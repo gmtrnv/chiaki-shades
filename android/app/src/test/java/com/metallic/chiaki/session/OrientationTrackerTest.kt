@@ -31,8 +31,8 @@ class OrientationTrackerTest
 	fun faceTowardThePlayerIsAQuarterTurnAroundX()
 	{
 		val t = OrientationTracker()
-		// after the quick warm-up gravity corrects it only a few degrees a second (as in the library)
-		t.feed(10f, 0f, 0f, 0f, 0f, 0f, 1f)
+		// lined up with gravity from the first reading
+		t.feed(0.1f, 0f, 0f, 0f, 0f, 0f, 1f)
 		assertEquals(0.707f, abs(t.orientX), 0.02f)
 		assertEquals(0.707f, abs(t.orientW), 0.02f)
 		assertEquals(0f, t.orientY, 0.02f)
@@ -50,6 +50,18 @@ class OrientationTrackerTest
 		assertEquals(0.707f, abs(t.orientW), 0.03f)
 		assertEquals(0f, t.orientX, 0.03f)
 		assertEquals(0f, t.orientZ, 0.03f)
+	}
+
+	@Test
+	fun aSlowTurnIsNotLost()
+	{
+		val t = OrientationTracker()
+		t.feed(1f, 0f, 0f, 0f, 0f, 1f, 0f)
+		// a quarter turn at ~2.9°/s (the library's tracker lost most of it in its fuzz filter)
+		val rate = 0.05f
+		t.feed((PI / 2 / rate).toFloat(), 0f, rate, 0f, 0f, 1f, 0f)
+		assertEquals(0.707f, abs(t.orientY), 0.03f)
+		assertEquals(0.707f, abs(t.orientW), 0.03f)
 	}
 
 	@Test

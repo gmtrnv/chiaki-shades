@@ -58,7 +58,14 @@ class StreamInput(val context: Context, val preferences: Preferences)
 	{
 		gyroSettings.reload()
 		gyroStick.reloadPaused()
-		gripFlat = preferences.motionGripFlat
+		val flat = preferences.motionGripFlat
+		if(flat != gripFlat)
+		{
+			gripFlat = flat
+			// the axes just turned 90°: the orientation worked out in the old ones would be wrong (and its turn
+			// left/right never corrects itself), so it starts again from the next readings
+			resetOrientation()
+		}
 		val motion = preferences.motionEnabled
 		if(motion != sendMotion)
 		{
@@ -138,8 +145,24 @@ class StreamInput(val context: Context, val preferences: Preferences)
 		return dt
 	}
 
+	/** whether [accel] holds a reading taken since the orientation last started (it lines up with gravity first) */
+	private var accelFresh = false
+
+	/** the orientation starts again, facing forward, lined up with the next accelerometer reading */
+	private fun resetOrientation()
+	{
+		orientation.reset()
+		accelFresh = false
+	}
+
+	/** learns the gyroscope's offset while the device is still (see [GyroCalibration]); kept for the whole session */
+	private val gyroCalibration = GyroCalibration()
+	private var lastAccelTimestamp = 0L
+
 	private fun updateOrientation(gx: Float, gy: Float, gz: Float, dt: Float)
 	{
+		if(!accelFresh)
+			return
 		orientation.update(gx, gy, gz, accel[0], accel[1], accel[2], dt)
 		sensorControllerState.orientX = orientation.orientX
 		sensorControllerState.orientY = orientation.orientY
@@ -159,8 +182,7 @@ class StreamInput(val context: Context, val preferences: Preferences)
 	 *   the player. Turning it left/right like aiming a bow is the controller's yaw.
 	 * - flat (lying like a controller, top of the screen away from the player): out of the screen
 	 *   = up, screen down = toward the player. That is what the fork did (for rotation 90 and 270).
-	 * Both are proper rotations, so the same map works for the gyroscope, the accelerometer and
-	 * the vector part of the orientation quaternion.
+	 * Both are proper rotations, so the same map works for the gyroscope and the accelerometer.
 	 */
 	private fun toController(x: Float, y: Float, z: Float) = sensorToController(rotation, gripFlat, x, y, z, axes)
 
@@ -170,14 +192,26 @@ class StreamInput(val context: Context, val preferences: Preferences)
 			val v = event.values
 			// the stream is landscape either way round (userLandscape): it can flip mid-game
 			if(event.sensor.type == sendingSensorType)
+			{
 				@Suppress("DEPRECATION")
-				rotation = windowManager.defaultDisplay.rotation
+				val r = windowManager.defaultDisplay.rotation
+				// turned round: the axes flipped, as with a change of grip
+				if(r != rotation)
+				{
+					rotation = r
+					resetOrientation()
+				}
+			}
 			when(event.sensor.type)
 			{
 				Sensor.TYPE_ACCELEROMETER -> {
 					val g = SensorManager.GRAVITY_EARTH
+					val accelDt = if(lastAccelTimestamp == 0L) 0f else ((event.timestamp - lastAccelTimestamp) / 1e9f).coerceIn(0f, 0.1f)
+					lastAccelTimestamp = event.timestamp
+					gyroCalibration.feedAccel(v[0] / g, v[1] / g, v[2] / g, accelDt)
 					toController(v[0] / g, v[1] / g, v[2] / g)
 					accel[0] = axes[0]; accel[1] = axes[1]; accel[2] = axes[2]
+					accelFresh = true
 					if(sendMotion)
 					{
 						sensorControllerState.accelX = axes[0]
@@ -189,9 +223,11 @@ class StreamInput(val context: Context, val preferences: Preferences)
 					}
 				}
 				Sensor.TYPE_GYROSCOPE -> {
-					toController(v[0], v[1], v[2])
 					// the time between readings (the sensor's own clock, in ns)
 					val dt = sendDt(event.timestamp)
+					// the offset learnt while still comes off before anything uses the reading (console, orientation, stick)
+					gyroCalibration.feedGyro(v[0], v[1], v[2], dt)
+					toController(v[0] - gyroCalibration.offsetX, v[1] - gyroCalibration.offsetY, v[2] - gyroCalibration.offsetZ)
 					if(sendMotion)
 					{
 						sensorControllerState.gyroX = axes[0]
@@ -234,8 +270,9 @@ class StreamInput(val context: Context, val preferences: Preferences)
 		sendingSensorType = if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null)
 			Sensor.TYPE_GYROSCOPE else Sensor.TYPE_ACCELEROMETER
 		lastSendTimestamp = 0L
+		lastAccelTimestamp = 0L
 		// a fresh start, facing forward (the device may have moved while the sensors were off)
-		orientation.reset()
+		resetOrientation()
 		listOfNotNull(
 			sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
 			sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)

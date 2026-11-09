@@ -16,6 +16,11 @@ import kotlin.math.sqrt
  *
  * Gyroscope in rad/s and accelerometer in g, both already in the controller's axes (x right, y up out of its face,
  * z toward the player).
+ *
+ * Two changes from the library's one: it starts already tilted as gravity says (the library's starts flat, as a
+ * controller on a table, and corrects only a few degrees a second after a short warm-up), and the fuzz filter
+ * smooths only what is sent. The library's filtered its own state, so turns slower than ~5°/s were partly lost
+ * at each reading, and a lost turn left/right never comes back (gravity only corrects the tilt): it drifted.
  */
 class OrientationTracker
 {
@@ -23,8 +28,7 @@ class OrientationTracker
 	{
 		const val SIN_1_4_PI = 0.70710677f
 		const val COS_1_4_PI = 0.70710677f
-		const val WARMUP_SAMPLES_COUNT = 30
-		const val BETA_WARMUP = 20f
+		/** how hard gravity pulls the tilt back (the library's value after its warm-up, which this one does not need) */
 		const val BETA_DEFAULT = 0.05f
 		const val ORIENT_FUZZ = 0.0007f
 		const val FUZZ_FILTER_PREV_WEIGHT = 0.75f
@@ -51,20 +55,40 @@ class OrientationTracker
 		orientW = 1f; orientX = 0f; orientY = 0f; orientZ = 0f
 	}
 
-	/** one reading; [dt] the seconds since the previous one (the first one only starts the clock) */
+	/** one reading; [dt] the seconds since the previous one (the first one only lines it up with gravity) */
 	fun update(gx: Float, gy: Float, gz: Float, ax: Float, ay: Float, az: Float, dt: Float)
 	{
 		samples++
-		if(samples <= 1 || dt <= 0f)
+		if(samples <= 1)
+			alignWithGravity(ax, ay, az)
+		else if(dt > 0f)
+			step(gx, gy, gz, ax, ay, az, BETA_DEFAULT, dt)
+		else
 			return
-		step(gx, gy, gz, ax, ay, az, if(samples < WARMUP_SAMPLES_COUNT) BETA_WARMUP else BETA_DEFAULT, dt)
-		// -90° around x, from Madgwick's frame to the console's
+		// -90° around x, from Madgwick's frame to the console's; the fuzz filter only on what is sent
 		val c = COS_1_4_PI
 		val s = -SIN_1_4_PI
-		orientW = c * w - s * x
-		orientX = c * x + s * w
-		orientY = c * y - s * z
-		orientZ = c * z + s * y
+		val first = samples <= 1
+		orientW = fuzz(c * w - s * x, orientW, first)
+		orientX = fuzz(c * x + s * w, orientX, first)
+		orientY = fuzz(c * y - s * z, orientY, first)
+		orientZ = fuzz(c * z + s * y, orientZ, first)
+	}
+
+	/**
+	 * Tilts the state as gravity says, still facing forward: the filter's own gravity correction with the gyroscope
+	 * at rest, in steps that get smaller (a fixed step would end up rocking around the answer).
+	 */
+	private fun alignWithGravity(ax: Float, ay: Float, az: Float)
+	{
+		if(ax == 0f && ay == 0f && az == 0f)
+			return
+		var beta = 20f
+		while(beta > 0.001f)
+		{
+			repeat(20) { step(0f, 0f, 0f, ax, ay, az, beta, 0.01f) }
+			beta *= 0.5f
+		}
 	}
 
 	private fun step(gx: Float, gy: Float, gz: Float, axIn: Float, ayIn: Float, azIn: Float, beta: Float, dt: Float)
@@ -115,18 +139,16 @@ class OrientationTracker
 		val qn = 1f / sqrt(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3)
 		q0 *= qn; q1 *= qn; q2 *= qn; q3 *= qn
 
-		w = fuzz(q0, w)
-		x = fuzz(q1, x)
-		y = fuzz(q2, y)
-		z = fuzz(q3, z)
+		w = q0; x = q1; y = q2; z = q3
 	}
 
 	/** the input system's fuzz filter: tiny changes are ignored or softened, so a still controller stays still */
-	private fun fuzz(cur: Float, prev: Float): Float
+	private fun fuzz(cur: Float, prev: Float, first: Boolean): Float
 	{
 		val d = cur - prev
 		return when
 		{
+			first -> cur
 			d < ORIENT_FUZZ / 2 && d > -ORIENT_FUZZ / 2 -> prev
 			d < ORIENT_FUZZ && d > -ORIENT_FUZZ -> FUZZ_FILTER_PREV_WEIGHT * prev + (1 - FUZZ_FILTER_PREV_WEIGHT) * cur
 			d < ORIENT_FUZZ * 2 && d > -ORIENT_FUZZ * 2 -> FUZZ_FILTER_PREV_WEIGHT_2X * prev + (1 - FUZZ_FILTER_PREV_WEIGHT_2X) * cur
