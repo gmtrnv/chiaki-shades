@@ -52,7 +52,6 @@ class StreamInput(val context: Context, val preferences: Preferences)
 
 	/** the last accelerometer reading in the controller's axes, in g (the gyroscope's tilt mode uses it) */
 	private val accel = floatArrayOf(0f, 1f, 0f)
-	private var lastGyroTimestamp = 0L
 
 	/** the options changed (the pad's panel, live): read them again, and start or stop the sensors if needed */
 	fun reloadGyroSettings()
@@ -67,7 +66,7 @@ class StreamInput(val context: Context, val preferences: Preferences)
 			// switched off: the console gets a controller at rest, not the last reading (the camera would keep turning)
 			if(!motion)
 				resetMotionState()
-			// the orientation sensor runs only with it: the sensors start again with the right list
+			// the sensors start again (and the orientation with them, facing forward)
 			restartSensors()
 		}
 		else
@@ -125,8 +124,28 @@ class StreamInput(val context: Context, val preferences: Preferences)
 	/** the screen's rotation against the device's natural orientation, refreshed with the readings */
 	private var rotation = Surface.ROTATION_0
 
-	private val quaternion = FloatArray(4)
 	private val axes = FloatArray(3)
+
+	/** the orientation sent to the console, from the readings already in the controller's axes */
+	private val orientation = OrientationTracker()
+
+	/** the seconds since the previous reading of the sending sensor (its own clock), 0 for the first one */
+	private var lastSendTimestamp = 0L
+	private fun sendDt(timestamp: Long): Float
+	{
+		val dt = if(lastSendTimestamp == 0L) 0f else ((timestamp - lastSendTimestamp) / 1e9f).coerceIn(0f, 0.1f)
+		lastSendTimestamp = timestamp
+		return dt
+	}
+
+	private fun updateOrientation(gx: Float, gy: Float, gz: Float, dt: Float)
+	{
+		orientation.update(gx, gy, gz, accel[0], accel[1], accel[2], dt)
+		sensorControllerState.orientX = orientation.orientX
+		sensorControllerState.orientY = orientation.orientY
+		sensorControllerState.orientZ = orientation.orientZ
+		sensorControllerState.orientW = orientation.orientW
+	}
 
 	/**
 	 * Turns a vector in the sensor's axes into the controller's ones, into [axes] (see [sensorToController]).
@@ -164,35 +183,28 @@ class StreamInput(val context: Context, val preferences: Preferences)
 						sensorControllerState.accelX = axes[0]
 						sensorControllerState.accelY = axes[1]
 						sensorControllerState.accelZ = axes[2]
+						// without a gyroscope the orientation follows gravity alone
+						if(sendingSensorType == Sensor.TYPE_ACCELEROMETER)
+							updateOrientation(0f, 0f, 0f, sendDt(event.timestamp))
 					}
 				}
 				Sensor.TYPE_GYROSCOPE -> {
 					toController(v[0], v[1], v[2])
+					// the time between readings (the sensor's own clock, in ns)
+					val dt = sendDt(event.timestamp)
 					if(sendMotion)
 					{
 						sensorControllerState.gyroX = axes[0]
 						sensorControllerState.gyroY = axes[1]
 						sensorControllerState.gyroZ = axes[2]
+						updateOrientation(axes[0], axes[1], axes[2], dt)
 					}
-					// the time between readings (the sensor's own clock, in ns)
-					val dt = if(lastGyroTimestamp == 0L) 0f else ((event.timestamp - lastGyroTimestamp) / 1e9f).coerceIn(0f, 0.1f)
-					lastGyroTimestamp = event.timestamp
 					gyroStick.feed(axes[0], axes[1], axes[2], accel[0], accel[1], accel[2], dt)
-				}
-				Sensor.TYPE_ROTATION_VECTOR -> {
-					if(!sendMotion)
-						return
-					SensorManager.getQuaternionFromVector(quaternion, v) // w, x, y, z
-					toController(quaternion[1], quaternion[2], quaternion[3])
-					sensorControllerState.orientX = axes[0]
-					sensorControllerState.orientY = axes[1]
-					sensorControllerState.orientZ = axes[2]
-					sensorControllerState.orientW = quaternion[0]
 				}
 				else -> return
 			}
-			// Only the gyroscope (what aiming uses) sends the state; the other two ride along with it.
-			// Each of the three used to send it, at 250 Hz each: some 750 calls a second on the main
+			// Only the gyroscope (what aiming uses) sends the state; the accelerometer rides along with it.
+			// Each sensor used to send it, at 250 Hz each: hundreds of calls a second on the main
 			// thread, each one a packet to the console.
 			if(event.sensor.type == sendingSensorType)
 				controllerStateUpdated()
@@ -221,12 +233,12 @@ class StreamInput(val context: Context, val preferences: Preferences)
 		val samplingPeriodUs = 8000
 		sendingSensorType = if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null)
 			Sensor.TYPE_GYROSCOPE else Sensor.TYPE_ACCELEROMETER
-		lastGyroTimestamp = 0L
+		lastSendTimestamp = 0L
+		// a fresh start, facing forward (the device may have moved while the sensors were off)
+		orientation.reset()
 		listOfNotNull(
 			sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-			sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE),
-			// the orientation only goes to the console with "Motion" on
-			if(sendMotion) sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) else null
+			sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
 		).forEach {
 			sensorManager.registerListener(sensorEventListener, it, samplingPeriodUs)
 		}
