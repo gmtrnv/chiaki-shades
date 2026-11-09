@@ -597,6 +597,8 @@
     <string name="gyro_recenter">Recentre</string>
     <string name="gyro_recentered">Centred</string>
     <string name="gyro_recenter_hint">The stick\'s centre goes where the phone is now (Tilt style). In the bar, a long press on the gyroscope button does the same.</string>
+    <string name="motion_recenter_hint">The controller the console sees faces forward again, where the device points now (and the gyroscope stick takes it as its centre). It can also be a button of the pad (Controls available) or a key of the physical controller.</string>
+    <string name="motion_recenter_control">Recentre motion</string>
     <string name="gyro_reset">Reset gyroscope options</string>
     <string name="gyro_reset_confirm">The gyroscope options go back to their factory values (it stays on).</string>
     <string name="gyro_button_description">Gyroscope stick (long press: recentre)</string>
@@ -839,6 +841,8 @@
     <string name="pad_target_share">Share (Create)</string>
     <string name="pad_target_touchpad">Touchpad click</string>
     <string name="pad_target_ps">PS button</string>
+    <string name="pad_group_motion">Motion</string>
+    <string name="pad_target_recenter">Recentre motion</string>
     <string name="pad_no_key">—</string>
     <string name="pad_key_held">hold %1$s</string>
     <string name="pad_swap_face">Swap ✕/○ and □/△</string>

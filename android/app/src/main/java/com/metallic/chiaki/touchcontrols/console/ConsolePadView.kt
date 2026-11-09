@@ -265,8 +265,13 @@ class ConsolePadView @JvmOverloads constructor(
 			haptics.trigger(harder)
 			if(b == BUTTON_GYRO)
 				onGyroToggle?.invoke()
+			if(b == BUTTON_RECENTER)
+				onRecenter?.invoke()
 		}
 	}
+
+	/** the recentre button was pressed: the host recentres the motion (the console never sees this button) */
+	var onRecenter: (() -> Unit)? = null
 
 	/** the gyroscope button was pressed: the host switches the gyroscope stick (the console never sees this button) */
 	var onGyroToggle: (() -> Unit)? = null
@@ -417,7 +422,7 @@ class ConsolePadView @JvmOverloads constructor(
 	{
 		var buttons = 0U
 		for((b, c) in counts)
-			if(c > 0 && b != BUTTON_L2 && b != BUTTON_R2 && b != BUTTON_GYRO)
+			if(c > 0 && b != BUTTON_L2 && b != BUTTON_R2 && b != BUTTON_GYRO && b != BUTTON_RECENTER)
 				buttons = buttons or b
 		val (lx, ly) = stickOutput(Side.L)
 		val (rx, ry) = stickOutput(Side.R)
@@ -1431,6 +1436,21 @@ class ConsolePadView @JvmOverloads constructor(
 				p.moveTo(cx - h * 0.36f, cy + h * 0.98f); p.lineTo(cx - h * 0.55f, cy + h * 0.6f)
 				p.moveTo(cx - h * 0.36f, cy + h * 0.98f); p.lineTo(cx - h * 0.05f, cy + h * 0.9f)
 				if(!gyroOn) { p.moveTo(cx - h, cy + h); p.lineTo(cx + h, cy - h) }
+			}
+			z.button == BUTTON_RECENTER -> {
+				// a target: a ring with four ticks and a dot in the middle (back to the centre)
+				val r = h * 0.55f
+				p.addCircle(cx, cy, r, Path.Direction.CW)
+				p.moveTo(cx, cy - h); p.lineTo(cx, cy - r * 0.55f)
+				p.moveTo(cx, cy + h); p.lineTo(cx, cy + r * 0.55f)
+				p.moveTo(cx - h, cy); p.lineTo(cx - r * 0.55f, cy)
+				p.moveTo(cx + h, cy); p.lineTo(cx + r * 0.55f, cy)
+				canvas.drawPath(p, iconPaint)
+				p.reset()
+				p.addCircle(cx, cy, h * 0.13f, Path.Direction.CW)
+				fillPaint.color = color
+				canvas.drawPath(p, fillPaint)
+				return true
 			}
 			z.button == ControllerState.BUTTON_PS -> {
 				// a little house: home

@@ -52,7 +52,8 @@ class PadMappingActivity: AppCompatActivity()
 			R.string.pad_group_dpad to listOf(PadTarget.DPAD_UP, PadTarget.DPAD_DOWN, PadTarget.DPAD_LEFT, PadTarget.DPAD_RIGHT),
 			R.string.pad_group_shoulders to listOf(PadTarget.L1, PadTarget.R1, PadTarget.L2, PadTarget.R2),
 			R.string.pad_group_sticks to listOf(PadTarget.L3, PadTarget.R3),
-			R.string.pad_group_center to listOf(PadTarget.OPTIONS, PadTarget.SHARE, PadTarget.TOUCHPAD, PadTarget.PS))
+			R.string.pad_group_center to listOf(PadTarget.OPTIONS, PadTarget.SHARE, PadTarget.TOUCHPAD, PadTarget.PS),
+			R.string.pad_group_motion to listOf(PadTarget.RECENTER))
 
 		fun targetName(context: Context, target: PadTarget) = when(target)
 		{
@@ -74,6 +75,7 @@ class PadMappingActivity: AppCompatActivity()
 			PadTarget.SHARE -> context.getString(R.string.pad_target_share)
 			PadTarget.TOUCHPAD -> context.getString(R.string.pad_target_touchpad)
 			PadTarget.PS -> context.getString(R.string.pad_target_ps)
+			PadTarget.RECENTER -> context.getString(R.string.pad_target_recenter)
 		}
 
 		/** a key's name as its controller would print it: "A", "Select", "Volume +"… */

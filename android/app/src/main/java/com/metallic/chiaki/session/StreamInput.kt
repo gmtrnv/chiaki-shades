@@ -155,6 +155,20 @@ class StreamInput(val context: Context, val preferences: Preferences)
 		accelFresh = false
 	}
 
+	/**
+	 * "Recentre": the controller faces forward again where the device points now (what the console gets), and the
+	 * gyroscope stick takes this position as its centre. From the pad's button, the bar, the panel or a physical
+	 * key mapped to it ([PadTarget.RECENTER]).
+	 */
+	fun recenterMotion()
+	{
+		gyroStick.recenter()
+		resetOrientation()
+	}
+
+	/** a physical key recentred (the screen shows the notice) */
+	var onRecentered: (() -> Unit)? = null
+
 	/** learns the gyroscope's offset while the device is still (see [GyroCalibration]); kept for the whole session */
 	private val gyroCalibration = GyroCalibration()
 	private var lastAccelTimestamp = 0L
@@ -362,10 +376,20 @@ class StreamInput(val context: Context, val preferences: Preferences)
 	private fun setTarget(target: PadTarget, down: Boolean)
 	{
 		val i = target.ordinal
+		val wasOn = targetHeld[i] > 0
 		targetHeld[i] = if(down) targetHeld[i] + 1 else maxOf(0, targetHeld[i] - 1)
 		val on = targetHeld[i] > 0
 		when(target)
 		{
+			// not a button of the console: an action, once per press
+			PadTarget.RECENTER -> {
+				if(on && !wasOn)
+				{
+					recenterMotion()
+					onRecentered?.invoke()
+				}
+				return
+			}
 			PadTarget.L2 -> keyControllerState.l2State = if(on) UByte.MAX_VALUE else 0U
 			PadTarget.R2 -> keyControllerState.r2State = if(on) UByte.MAX_VALUE else 0U
 			else -> keyControllerState.buttons = keyControllerState.buttons.let {

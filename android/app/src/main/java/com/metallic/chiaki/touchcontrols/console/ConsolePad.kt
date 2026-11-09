@@ -110,7 +110,7 @@ class ConsolePadLayout(
 		/** the touchpad in [hidden] */
 		const val TOUCHPAD = "touchpad"
 		/** Share, L3 and R3 buttons are there for who wants them (L3/R3 also come from the stick gestures) */
-		val DEFAULT_HIDDEN = setOf("share", "l3", "r3", "gyro")
+		val DEFAULT_HIDDEN = setOf("share", "l3", "r3", "gyro", "recenter")
 
 		/** the zones that mirror each other when editing with "symmetric" on */
 		val partners = mapOf("lstick" to "rstick", "dpad" to "face", "l1" to "r1", "l2" to "r2", "l3" to "r3")
@@ -142,7 +142,9 @@ class ConsolePadLayout(
 				// off by default: left of PS
 				Zone("share", ZoneKind.BUTTON, Side.C, false, -21.5f, 4.6f, 12f, 6f, ControllerState.BUTTON_SHARE, fixed = true),
 				// off by default: right of PS; switches the gyroscope stick on and off
-				Zone("gyro", ZoneKind.BUTTON, Side.C, false, 9.5f, 3.2f, 10f, 10f, BUTTON_GYRO, fixed = true, round = true))
+				Zone("gyro", ZoneKind.BUTTON, Side.C, false, 9.5f, 3.2f, 10f, 10f, BUTTON_GYRO, fixed = true, round = true),
+				// off by default: right of the gyroscope's; recentres the motion
+				Zone("recenter", ZoneKind.BUTTON, Side.C, false, 21f, 3.2f, 10f, 10f, BUTTON_RECENTER, fixed = true, round = true))
 			return ConsolePadLayout((center + left + right).toMutableList(), VideoBox(39.3f, 3.1f, 0f, 25.5f))
 		}
 
@@ -174,7 +176,8 @@ class ConsolePadLayout(
 				"ps" to floatArrayOf(-12.6f, 4.2f, 11.4f, 11.4f),
 				"options" to floatArrayOf(1.2f, 6.9f, 12.6f, 6f),
 				"share" to floatArrayOf(-6f, 17.5f, 12f, 6f),
-				"gyro" to floatArrayOf(-25f, 4.2f, 10f, 10f))
+				"gyro" to floatArrayOf(-25f, 4.2f, 10f, 10f),
+				"recenter" to floatArrayOf(-25f, 15.7f, 10f, 10f))
 			l.video.marginX = 23.1f; l.video.top = 4.4f; l.video.dx = 0f; l.video.bottom = 6.5f
 			return l
 		}
@@ -196,7 +199,8 @@ class ConsolePadLayout(
 				"options" to floatArrayOf(-8f, 33f, 16f, 6f),
 				"ps" to floatArrayOf(-6f, 2f, 12f, 12f),
 				"share" to floatArrayOf(-21f, 4f, 12f, 6f),
-				"gyro" to floatArrayOf(8f, 2f, 10f, 10f))
+				"gyro" to floatArrayOf(8f, 2f, 10f, 10f),
+				"recenter" to floatArrayOf(19.5f, 2f, 10f, 10f))
 			l.video.marginX = 29f; l.video.top = 1f; l.video.dx = 0f; l.video.bottom = 0f
 			return l
 		}
@@ -241,6 +245,9 @@ class ConsolePadLayout(
 				o.optJSONArray("hidden")?.let { a ->
 					def.hidden.clear()
 					for(i in 0 until a.length()) def.hidden.add(a.getString(i))
+					// a control newer than the saved layout (e.g. "recenter") keeps its default of off: its list could
+					// not name it, and it would have appeared out of nowhere
+					def.zones.filter { !saved.has(it.id) && it.id in DEFAULT_HIDDEN }.forEach { def.hidden.add(it.id) }
 				}
 				def
 			}
@@ -475,6 +482,8 @@ val BUTTON_L2 = (1 shl 20).toUInt()
 val BUTTON_R2 = (1 shl 21).toUInt()
 /** the pad's own gyroscope button: it switches the gyroscope stick on and off and never reaches the console */
 val BUTTON_GYRO = (1 shl 22).toUInt()
+/** the pad's own recentre button: the motion faces forward again where the device points (never reaches the console) */
+val BUTTON_RECENTER = (1 shl 23).toUInt()
 
 /** how a stick's own click (L3 / R3) is made; "squash" is its own choice now (see [PadButton]) */
 enum class ClickMode(val value: String)

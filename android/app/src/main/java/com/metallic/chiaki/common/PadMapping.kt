@@ -8,7 +8,10 @@ import com.metallic.chiaki.lib.ControllerState
 import org.json.JSONArray
 import org.json.JSONObject
 
-/** A button of the console's controller that a physical key can press. L2/R2 have no bit: they set the trigger. */
+/**
+ * A button of the console's controller that a physical key can press. L2/R2 have no bit: they set the trigger.
+ * [RECENTER] is the one that is not a button but an action of the app.
+ */
 enum class PadTarget(val id: String, val button: UInt)
 {
 	CROSS("cross", ControllerState.BUTTON_CROSS),
@@ -28,7 +31,9 @@ enum class PadTarget(val id: String, val button: UInt)
 	OPTIONS("options", ControllerState.BUTTON_OPTIONS),
 	SHARE("share", ControllerState.BUTTON_SHARE),
 	TOUCHPAD("touchpad", ControllerState.BUTTON_TOUCHPAD),
-	PS("ps", ControllerState.BUTTON_PS);
+	PS("ps", ControllerState.BUTTON_PS),
+	/** not a button: recentres the motion (the controller's orientation and the gyroscope stick), see StreamInput */
+	RECENTER("recenter", 0U);
 
 	companion object
 	{

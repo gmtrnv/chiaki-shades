@@ -512,6 +512,15 @@ class PadEditor(
 			note(c, str(R.string.preferences_motion_enabled_summary))
 			if(!s.gyroHardware)
 				note(c, str(R.string.preferences_motion_accel_only))
+			// the controller faces forward again where the device points (only in a game: the test screen has no console)
+			if(preferences.motionEnabled && !testScreen)
+				gyroRecenter?.let { recenter ->
+					c.addView(textButton(str(R.string.gyro_recenter)) {
+						recenter()
+						GameplayToast.show(activity, R.string.gyro_recentered)
+					})
+					note(c, str(R.string.motion_recenter_hint))
+				}
 		}
 
 		header(c, str(R.string.gyro_sec))

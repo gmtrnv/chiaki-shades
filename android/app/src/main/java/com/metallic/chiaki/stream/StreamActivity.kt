@@ -503,7 +503,7 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 		padEditor = PadEditor(this, binding.padEditor, binding.consolePad, binding.consoleShell, testScreen = false)
 		// the gyroscope stick's options can be tuned live: the panel's changes reach the input, and its button
 		binding.consolePad.onSettingsReloaded = { viewModel.input.reloadGyroSettings(); updateGyroButton() }
-		padEditor.gyroRecenter = { viewModel.input.gyroStick.recenter() }
+		padEditor.gyroRecenter = { viewModel.input.recenterMotion() }
 		// leaving the editor: the controls go back to how they were (off for whoever only came in for an option)
 		padEditor.onEditingChanged = { editing ->
 			if(!editing && controlsOffBeforeEditing)
@@ -767,6 +767,8 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 		val gyro = viewModel.input.gyroStick
 		if(gyro.onPausedChanged === gyroPausedListener)
 			gyro.onPausedChanged = null
+		if(viewModel.input.onRecentered === recenteredListener)
+			viewModel.input.onRecentered = null
 	}
 
 	private fun reconnect()
@@ -936,6 +938,8 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 
 	/** what this screen hung on the gyroscope (let go in onDestroy: the input may outlive the screen) */
 	private var gyroPausedListener: (() -> Unit)? = null
+	/** what this screen hung on the input for a physical key that recentres (let go in onDestroy too) */
+	private var recenteredListener: (() -> Unit)? = null
 
 	private fun setupGyroButton()
 	{
@@ -963,8 +967,16 @@ class StreamActivity : AppCompatActivity(), View.OnSystemUiVisibilityChangeListe
 		gyro.onPausedChanged = listener
 		binding.consolePad.gyroOn = !gyro.paused
 		binding.consolePad.onGyroToggle = { gyro.toggle() }
+		// recentring (the controller's orientation and the gyroscope stick): the pad's button, a physical key, a long press here
+		binding.consolePad.onRecenter = {
+			viewModel.input.recenterMotion()
+			GameplayToast.show(this, R.string.gyro_recentered)
+		}
+		val recentered = { runOnUiThread { GameplayToast.show(this, R.string.gyro_recentered) } }
+		recenteredListener = recentered
+		viewModel.input.onRecentered = recentered
 		button.setOnLongClickListener {
-			viewModel.input.gyroStick.recenter()
+			viewModel.input.recenterMotion()
 			GameplayToast.show(this, R.string.gyro_recentered)
 			showOverlay()
 			true

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import com.metallic.chiaki.R
+import com.metallic.chiaki.common.GameplayToast
 import com.metallic.chiaki.common.Preferences
 import com.metallic.chiaki.databinding.ActivityTouchTestBinding
 import com.metallic.chiaki.lib.ControllerState
@@ -45,6 +46,7 @@ class TouchTestActivity : AppCompatActivity()
 		gyro.onPausedChanged = { binding.pad.gyroOn = !gyro.paused; refreshGame() }
 		binding.pad.gyroOn = !gyro.paused
 		binding.pad.onGyroToggle = { gyro.toggle() }
+		binding.pad.onRecenter = { gyro.recenter(); GameplayToast.show(this, R.string.gyro_recentered) }
 		binding.pad.stateListener = { padState = it; refreshGame() }
 		// the options panel changed something: the gyroscope stick reads it (the pad's own settings are the same object)
 		binding.pad.onSettingsReloaded = { gripFlat = Preferences(this).motionGripFlat; gyro.reloadPaused(); updateSensors(); refreshGame() }

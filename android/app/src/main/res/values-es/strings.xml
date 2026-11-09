@@ -441,6 +441,8 @@
     <string name="gyro_recenter">Recentrar</string>
     <string name="gyro_recentered">Centrado</string>
     <string name="gyro_recenter_hint">El centro del stick pasa a donde está el teléfono ahora (estilo Inclinación). En la barra, una pulsación larga en el botón del giroscopio hace lo mismo.</string>
+    <string name="motion_recenter_hint">El mando que ve la consola vuelve a mirar al frente, hacia donde apunta ahora el aparato (y el giroscopio como stick toma esa posición como centro). También puede ser un botón del pad (Botones disponibles) o una tecla del mando físico.</string>
+    <string name="motion_recenter_control">Recentrar movimiento</string>
     <string name="gyro_reset">Restablecer opciones del giroscopio</string>
     <string name="gyro_reset_confirm">Las opciones del giroscopio vuelven a sus valores de fábrica (sigue encendido).</string>
     <string name="gyro_button_description">Stick por giroscopio (pulsación larga: recentrar)</string>
@@ -693,6 +695,8 @@
     <string name="pad_target_share">Share (Crear)</string>
     <string name="pad_target_touchpad">Click del touchpad</string>
     <string name="pad_target_ps">Botón PS</string>
+    <string name="pad_group_motion">Movimiento</string>
+    <string name="pad_target_recenter">Recentrar movimiento</string>
     <string name="pad_no_key">—</string>
     <string name="pad_key_held">mantener %1$s</string>
     <string name="pad_swap_face">Intercambiar ✕/○ y □/△</string>

@@ -29,6 +29,7 @@ object LayoutDialogs
 		"l3" to "L3", "r3" to "R3",
 		"ps" to "PS", "options" to "OPTIONS", "share" to "SHARE",
 		"gyro" to context.getString(R.string.gyro_sec),
+		"recenter" to context.getString(R.string.motion_recenter_control),
 		ConsolePadLayout.TOUCHPAD to context.getString(R.string.console_layout_touchpad))
 
 	/** which controls are on; each tick applies and saves at once */
