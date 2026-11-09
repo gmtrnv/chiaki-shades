@@ -56,7 +56,8 @@ se instala junto a cualquier otro Chiaki.
 - **Modo Consola**: el vídeo se encoge arriba, dentro de una carcasa dibujada (Atardecer, Grafito o Hielo), con los
   controles alrededor. Todo se puede probar en un juego de práctica sin conectarte.
 - **Giroscopio**: los controles de movimiento de la consola, o el giroscopio como stick, activado con los botones que
-  elijas.
+  elijas. **Recentrar movimiento** (un botón del pad, una tecla del mando físico o el panel de la partida) lo devuelve
+  al frente.
 - **Mandos físicos**: qué hace cada botón, con perfiles, gatillos analógicos en las portátiles y un probador en vivo.
 - **Vibración** bien hecha, también en juegos de PS5 (la app se presenta como un DualSense y convierte sus hápticos en
   vibración), con un panel de sonido y vibración durante la partida.

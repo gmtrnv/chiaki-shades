@@ -25,8 +25,8 @@ android {
         applicationId "io.github.gmtrnv.chiaki" // own id: installs next to the original Chiaki
         minSdk 24
         targetSdk 34
-        versionCode 270
-        versionName "2.7.0" // Based on chiaki-ng $chiakiVersion
+        versionCode 280
+        versionName "2.8.0" // Based on chiaki-ng $chiakiVersion
         manifestPlaceholders = [appLabel: "@string/app_name"]
         // -Pprueba (PRUEBA=1 in the build scripts): a separate test copy that installs next to the
         // real app, with its own empty settings and consoles, to test a first start

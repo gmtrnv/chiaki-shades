@@ -53,6 +53,7 @@ for Android. It has its own name, icon and package, so it installs next to any o
 - **Console mode**: the video shrinks to the top inside a drawn shell (Sunset, Graphite or Ice), with the controls
   around it. Try everything in a practice game without connecting.
 - **Gyroscope**: the console's motion controls, or the gyroscope as a stick, turned on by buttons you choose.
+  **Recentre motion** (a pad button, a physical key or the in-game panel) makes it face forward again.
 - **Physical controllers**: per-button mapping with profiles, analog triggers on handhelds, and a live tester.
 - **Vibration** done properly, also in PS5 games (the app presents itself as a DualSense and turns its haptics into
   rumble), with a sound and vibration panel during the game.
