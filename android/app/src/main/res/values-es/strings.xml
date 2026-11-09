@@ -1,0 +1,834 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Spanish for the strings added by this fork; the rest falls back to English -->
+<resources>
+    <string name="display_mode_optical">Stretch óptico</string>
+    <string name="display_mode_shell">Carcasa</string>
+    <string name="layout_edit_hint_fixed_video">Arrastra un control para moverlo; su esquina cian cambia el tamaño (doble toque: otra esquina). Pulsación larga: trae arriba lo que está debajo. Doble toque en el vídeo: editar el touchpad. El vídeo solo se mueve en el modo Carcasa.</string>
+    <string name="effect_color">Color</string>
+    <string name="preset_picker_previous">Preset anterior</string>
+    <string name="preset_picker_next">Preset siguiente</string>
+    <string name="preferences_slider_reset">Restaurar valor por defecto</string>
+    <string name="preferences_category_title_optical">Stretch óptico (botón Óptico)</string>
+    <string name="preferences_optical_fix_title">Curvatura de la lente</string>
+    <string name="preferences_optical_fix_summary" formatted="false">0 % estira todo por igual · 100 % deja el centro natural y estira más los bordes</string>
+    <string name="preferences_optical_zc_title">Zoom</string>
+    <string name="preferences_optical_zc_summary">Agranda un poco la imagen (recorta los bordes) para que haga falta estirar menos</string>
+    <string name="preferences_category_title_color">Color (botón Color)</string>
+    <string name="preferences_vignette_amount_title">Viñeta</string>
+    <string name="preferences_vignette_amount_summary">Oscurece los bordes de la imagen para dar sensación de inmersión · 0 % = apagada</string>
+    <string name="preferences_vignette_start_title">Inicio de la viñeta</string>
+    <string name="preferences_vignette_start_summary" formatted="false">Distancia desde el centro donde empieza a oscurecer · 0 % = desde el centro</string>
+    <string name="preferences_color_brightness_title">Brillo</string>
+    <string name="preferences_color_brightness_summary">Sube o baja los negros (suma luz a todos los tonos por igual)</string>
+    <string name="preferences_color_tint_title">Tinte</string>
+    <string name="preferences_color_tint_summary">Negativo = más verde, positivo = más magenta</string>
+    <string name="preferences_color_balance_title">Balance del tono dividido</string>
+    <string name="preferences_color_balance_summary">Negativo = más color de sombras, positivo = más color de luces</string>
+    <string name="preferences_color_palette_custom">Personalizada (importada)</string>
+    <string name="preferences_color_look_export_title">Exportar look</string>
+    <string name="preferences_color_look_export_summary">Comparte el look actual (color y viñeta) como un archivo de shader, compatible con mpv y reproductores basados en mpv</string>
+    <string name="action_export_look">Exportar look</string>
+    <string name="preferences_color_look_import_title">Importar look</string>
+    <string name="preferences_color_look_import_summary">Carga un archivo de look (.glsl) exportado desde esta app o hecho con un editor compatible</string>
+    <string name="alert_title_look_imported">Look importado</string>
+    <string name="look_imported_into">«%1$s» se cargó en el preset %2$s.</string>
+    <string name="look_imported_palette">Tono dividido: paleta %1$s.</string>
+    <string name="look_imported_custom_colors">Tono dividido: colores propios (paleta Personalizada).</string>
+    <string name="look_issue_clamped">Algunos valores estaban fuera del rango permitido y se ajustaron a él.</string>
+    <string name="look_issue_vignette">La dirección de viñeta del archivo no se reconoce; se usó Lados.</string>
+    <string name="look_issue_bw">El filtro de blanco y negro del archivo no se reconoce; se usó Neutro.</string>
+    <string name="alert_title_look_overwrite">¿Reemplazar tus cambios?</string>
+    <string name="alert_message_look_overwrite">El preset %1$s tiene cambios tuyos; el look importado los reemplazará.</string>
+    <string name="alert_message_look_invalid">Este archivo no contiene un look: le falta la línea de ajustes.</string>
+    <string name="preferences_color_bw_title">Blanco y negro</string>
+    <string name="preferences_card_animation_title">Animación de las tarjetas</string>
+    <string-array name="preferences_card_animation_entries">
+        <item>Amanecer</item>
+        <item>Respiración</item>
+        <item>Carga</item>
+    </string-array>
+    <string-array name="preferences_color_bw_entries">
+        <item>No (color)</item>
+        <item>Neutro</item>
+        <item>Filtro rojo</item>
+        <item>Filtro naranja</item>
+        <item>Filtro amarillo</item>
+        <item>Filtro verde</item>
+        <item>Filtro azul</item>
+    </string-array>
+    <string name="preferences_color_bw_strength_title">Intensidad del filtro</string>
+    <string name="preferences_color_bw_strength_summary" formatted="false">Cuánto cambia los grises el filtro de color · 0 % = neutro</string>
+    <string name="preferences_vignette_axis_title">Dirección de la viñeta</string>
+    <string-array name="preferences_vignette_axis_entries">
+        <item>Lados</item>
+        <item>Arriba y abajo</item>
+        <item>Cuatro lados</item>
+        <item>Elipse (redonda)</item>
+    </string-array>
+    <string name="action_close_overlay">Salir del streaming</string>
+    <string name="alert_message_quit_stream">¿Salir del streaming?</string>
+    <string name="action_quit_session">Salir</string>
+    <string name="action_suspend_and_quit">Suspender y salir</string>
+    <string name="alert_message_quit_stream_kept">¿Salir del streaming? Con la reconexión rápida queda en pausa %s y puedes volver al instante.</string>
+    <string name="action_pause_and_quit">Pausar y salir</string>
+    <string name="alert_message_connection_lost">Se perdió la conexión con la consola (unos segundos sin imagen). Revisa tu WiFi.</string>
+    <string name="action_reconnect">Reconectar</string>
+    <string name="action_close_session">Cerrar del todo</string>
+    <string name="preferences_quick_reconnect_enabled_title">Reconexión rápida</string>
+    <string name="preferences_quick_reconnect_enabled_summary">Al salir, la sesión sigue conectada un rato y volver es instantáneo (mientras tanto gasta datos y batería)</string>
+    <string name="preferences_quick_reconnect_seconds_title">Mantenerla durante</string>
+    <string name="preferences_motion_grip_title">Cómo sostienes el aparato</string>
+    <string name="preferences_motion_enabled_title">Giroscopio del mando</string>
+    <string name="preferences_motion_enabled_summary">La consola recibe el movimiento del teléfono como el giroscopio del propio mando. Para juegos que ya lo usan (apuntar o controlar moviendo el mando).</string>
+    <string name="preferences_motion_no_sensors">Este aparato no tiene sensores de movimiento.</string>
+    <string name="preferences_motion_accel_only">Este aparato no tiene giroscopio: a la consola solo le llega la inclinación, no los giros.</string>
+    <string-array name="preferences_motion_grip_entries">
+        <item>De frente (pantalla hacia ti)</item>
+        <item>Tumbado como un mando</item>
+    </string-array>
+    <string name="preferences_quick_reconnect_press_ps_title">Pulsar PS al pausar</string>
+    <string name="preferences_quick_reconnect_press_ps_summary">Abre el centro de control de la consola: la mayoría de juegos se pausan</string>
+    <string name="preferences_stream_volume_title">Volumen del streaming</string>
+    <string name="stream_volume_button">Sonido y vibración: silencio (pulsación larga: ajustes)</string>
+    <string name="stream_sound_button">Sonido del juego sí o no</string>
+    <string name="stream_sound_state_silent">Silencio</string>
+    <string name="stream_sound_state_both">Sonido y vibración</string>
+    <string name="stream_sound_state_sound">Solo sonido</string>
+    <string name="stream_sound_state_vibration">Solo vibración</string>
+    <string name="preferences_stream_volume_summary">Solo el sonido del juego, para poder escuchar otra cosa a la vez</string>
+    <string name="notification_channel_kept_session">Sesión en pausa</string>
+    <string name="notification_kept_session_title">Sesión en pausa</string>
+    <string name="notification_kept_session_text_ps5">Tu PS5 sigue conectada: vuelve y entras al instante</string>
+    <string name="notification_kept_session_text_ps4">Tu PS4 sigue conectada: vuelve y entras al instante</string>
+    <string name="notification_kept_session_back">Volver</string>
+    <string name="notification_kept_session_close">Cerrar</string>
+    <string name="card_paused">En pausa · %s</string>
+    <string name="action_close_kept_session">Cerrar sesión ahora</string>
+    <string name="toast_console_suspended">Consola enviada a reposo</string>
+    <string name="effect_hq">Alta calidad</string>
+    <string name="preferences_category_title_quality">Calidad de imagen (botón HQ)</string>
+    <string name="preferences_hq_title">Alta calidad</string>
+    <string name="preferences_hq_summary">Escalado más nítido y nitidez adaptativa. Apágalo para ahorrar batería, también con el botón HQ durante el streaming</string>
+    <string name="preferences_sharp_title">Nitidez</string>
+    <string name="preferences_sharp_summary">Añade detalle donde la imagen se amplía; apenas se nota si la pantalla tiene menos píxeles que el stream</string>
+    <string name="preferences_antiring_title">Anti-halos</string>
+    <string name="preferences_antiring_summary">Evita halos claros u oscuros alrededor de los bordes</string>
+    <string name="on_screen_controls">Controles en pantalla</string>
+    <string name="action_export_settings">Exportar ajustes</string>
+    <string name="preferences_export_settings_title">Exportar ajustes</string>
+    <string name="preferences_export_settings_summary">Elige qué incluir. Las consolas van desmarcadas por defecto: llevan tus claves secretas de Remote Play</string>
+    <string name="preferences_import_settings_title">Importar ajustes</string>
+    <string name="preferences_import_settings_summary">Importa ajustes desde un archivo JSON</string>
+    <string name="alert_title_export">Exportar ajustes</string>
+    <string name="action_export">Exportar</string>
+    <string name="settings_category_app">Configuración de la app (streaming, controles, botones)</string>
+    <string name="settings_category_image">Imagen y presets</string>
+    <string name="settings_category_consoles">Consolas registradas</string>
+    <string name="alert_title_import">Importar</string>
+    <string name="action_import_import">Importar</string>
+    <string name="action_import_cancel">Cancelar</string>
+    <string name="alert_message_import_failed">No se pudieron importar los ajustes del archivo:\n%s</string>
+    <string name="action_import_failed_ack">Cerrar</string>
+    <string name="alert_message_import_empty">El archivo no contiene nada que importar</string>
+    <string name="import_consoles_warning">Este archivo incluye las claves de acceso a estas consolas. Impórtalo solo si es tuyo o confías en quien te lo envió.</string>
+    <string name="import_replace_note">Lo que marques reemplaza tus ajustes actuales. Las consolas que ya están en este dispositivo (misma MAC) se actualizan, no se duplican.</string>
+    <string name="export_consoles_warning">Incluye las claves de acceso a tus consolas: quien tenga este archivo podrá conectarse a ellas como si fueras tú. No lo compartas.</string>
+    <string name="preferences_category_title_deband">Debanding (botón Deband)</string>
+    <string name="preferences_deband_light_title">Debanding ligero</string>
+    <string name="preferences_deband_light_summary">Suaviza los escalones que deja la compresión del vídeo en cielos, niebla y escenas oscuras. También con el botón Deband durante el streaming</string>
+    <string name="preferences_deband_steps_title">Pasos</string>
+    <string name="preferences_deband_steps_summary">1 = lo más ligero. Cada paso más busca más lejos y suaviza bandas más anchas, con algo más de trabajo para la GPU</string>
+    <string name="preferences_deband_threshold_title">Umbral</string>
+    <string name="preferences_deband_threshold_summary">Cuánto pueden diferir los píxeles vecinos y aun así suavizarse. Demasiado alto borra detalle fino</string>
+    <string name="preferences_deband_range_title">Radio</string>
+    <string name="preferences_deband_range_summary">Hasta dónde mira alrededor de cada píxel, en píxeles del stream. Las bandas anchas necesitan más</string>
+    <string name="preferences_deband_grain_title">Grano</string>
+    <string name="preferences_deband_grain_summary" formatted="false">Ruido finísimo que disimula lo que queda de los escalones · 0 % = apagado</string>
+    <string name="preferences_color_preset_title">Preset</string>
+    <string-array name="preferences_color_preset_entries">
+        <item>Cine</item>
+        <item>Vívido</item>
+        <item>Natural+</item>
+        <item>Cálido</item>
+        <item>Noche</item>
+        <item>Película antigua</item>
+        <item>Blanco y negro</item>
+        <item>Sepia</item>
+        <item>Portátil</item>
+        <item>Personalizado</item>
+    </string-array>
+    <string name="preferences_color_preset_reset_title">Restablecer preset</string>
+    <string name="preferences_color_preset_reset_summary">Vuelve a los valores de %1$s</string>
+    <string name="preferences_color_preset_reset_custom_summary">Pone todo en neutro (sin retoques)</string>
+    <string name="preferences_color_preset_save_title">Guardar como Personalizado</string>
+    <string name="preferences_color_preset_save_summary">Guarda los valores actuales en el preset Personalizado, sustituyendo lo guardado antes</string>
+    <string name="preferences_color_exposure_title">Exposición</string>
+    <string name="preferences_color_exposure_summary" formatted="false">Brillo general · 100 % = el doble de luz</string>
+    <string name="preferences_color_temp_title">Temperatura</string>
+    <string name="preferences_color_temp_summary">Negativo = más frío (azulado), positivo = más cálido (anaranjado)</string>
+    <string name="preferences_color_contrast_title">Contraste</string>
+    <string name="preferences_color_contrast_summary" formatted="false">100 % = sin cambios</string>
+    <string name="preferences_color_saturation_title">Saturación</string>
+    <string name="preferences_color_saturation_summary" formatted="false">100 % = sin cambios · 0 % = blanco y negro</string>
+    <string name="preferences_color_vibrance_title">Vibrance</string>
+    <string name="preferences_color_vibrance_summary">Aviva más los colores apagados que los que ya son intensos; la piel sigue natural</string>
+    <string name="preferences_color_blacks_title">Curva: negros</string>
+    <string name="preferences_color_blacks_summary">Levanta el negro más profundo, aspecto de película desvaída</string>
+    <string name="preferences_color_shadows_title">Curva: sombras</string>
+    <string name="preferences_color_mids_title">Curva: tonos medios</string>
+    <string name="preferences_color_highs_title">Curva: luces</string>
+    <string name="preferences_color_tone_summary">Positivo aclara estos tonos, negativo los oscurece</string>
+    <string name="preferences_color_whites_title">Curva: blancos</string>
+    <string name="preferences_color_whites_summary">Baja el blanco más brillante, luces más suaves</string>
+    <string name="preferences_color_split_title">Tono dividido</string>
+    <string name="preferences_color_split_summary" formatted="false">Tiñe las sombras y las luces con los colores de la paleta · 0 % = apagado</string>
+    <string name="preferences_color_palette_title">Paleta del tono dividido</string>
+    <string-array name="preferences_color_palette_entries">
+        <item>Azul verdoso / Naranja</item>
+        <item>Azul / Ámbar</item>
+        <item>Verde / Magenta</item>
+        <item>Morado / Amarillo</item>
+        <item>Sepia</item>
+        <item>Frío</item>
+    </string-array>
+    <string name="preferences_pip_enabled_title">Ventana pequeña al ir a Inicio</string>
+    <string name="preferences_pip_enabled_summary">Al pulsar Inicio, el streaming sigue en una ventana pequeña en vez de cerrarse</string>
+    <string name="reach_home">En casa</string>
+    <string name="reach_vpn">Fuera de casa · por VPN</string>
+    <string name="reach_direct">Fuera de casa · directa</string>
+    <string name="reach_searching">Buscando…</string>
+    <string name="reach_unreachable">No se ve</string>
+    <string name="reach_unreachable_vpn">No se ve · VPN activa</string>
+    <string name="reach_discovery_off">Búsqueda apagada</string>
+    <string name="display_hosts_empty_discovery_off_info">Aún no hay consolas.\nDesliza hacia abajo para buscarlas en tu red, o enciende la búsqueda para encontrarlas solas.</string>
+    <string name="display_hosts_empty_discovery_on_info">No hay consolas añadidas ni encontradas.</string>
+    <string name="alert_message_unreachable">La consola no responde.\n\nSi estás fuera de casa, activa tu VPN (por ejemplo Tailscale) y vuelve a intentarlo.\n\nSi estás en casa, puede estar apagada del todo o sin red.</string>
+    <string name="alert_message_unreachable_vpn">La VPN está activa pero la consola no responde.\n\nPuede estar apagada del todo o sin red, o la VPN no llega a la red de tu casa.</string>
+    <string name="action_try_anyway">Intentar igualmente</string>
+    <string name="alert_message_standby_wakeup">La consola está en reposo. ¿Despertarla?</string>
+    <string name="action_wakeup">Despertar</string>
+    <string name="action_wakeup_connect">Despertar y conectar</string>
+    <string name="action_wakeup_only">Solo despertar</string>
+    <string name="action_connect_cancel_connect">Cancelar</string>
+    <string name="wakeup_waking">Despertando… %d s</string>
+    <string name="wakeup_ready">Despierta</string>
+    <string name="wakeup_ready_connecting">Despierta · conectando…</string>
+    <string name="wakeup_failed">No despertó</string>
+    <string name="action_cancel_wakeup">Cancelar despertar</string>
+    <string name="card_leaving">Desconectando… %d s</string>
+    <string name="card_sleeping">Suspendiendo… %d s</string>
+    <string name="card_nope_waking">¡Paciencia, me estoy despertando!</string>
+    <string name="card_nope_leaving">¡Espera, me estoy desconectando!</string>
+    <string name="card_nope_sleeping">Shh… me estoy durmiendo</string>
+    <string name="alert_message_console_busy">La consola todavía está cerrando la sesión anterior (o la está usando otro aparato).\n\nReintentando… %d s</string>
+
+    <!-- mando táctil del modo Consola (fase 12) -->
+    <string name="preferences_console_pad_test_title">Mando táctil y giroscopio</string>
+    <string name="preferences_console_pad_test_summary">Mando táctil, giroscopio y cómo sostienes el aparato. Se pueden probar aquí sin conectarte y cambiar durante la partida (pulsación larga en el botón del mando).</string>
+    <string name="preferences_console_shell_title">Carcasa (modo Consola)</string>
+    <string name="console_shell_sunset">Atardecer</string>
+    <string name="console_shell_graphite">Grafito</string>
+    <string name="console_shell_ice">Hielo</string>
+    <string name="console_test_options">Opciones</string>
+    <string name="console_test_edit">Editar disposición</string>
+    <string name="console_test_close">Cerrar</string>
+    <string name="console_test_close_panel">✕ Cerrar</string>
+    <string name="console_test_done">Listo</string>
+    <string name="console_test_symmetric">Simétrico</string>
+    <string name="console_test_reset_layout">Restablecer disposición</string>
+    <string name="console_test_edit_hint">Arrastra un control para moverlo; su esquina cian cambia el tamaño (doble toque: otra esquina). Pulsación larga: trae arriba lo que está debajo. Doble toque en el vídeo: editar el touchpad.</string>
+    <string name="console_test_section_basic">Mando táctil</string>
+    <string name="console_test_stick_travel">Recorrido del stick</string>
+    <string name="console_test_follow">El stick sigue al dedo si te pasas del borde</string>
+    <string name="console_layout_controls_button">Botones</string>
+    <string name="console_layout_slots_button">Disposiciones</string>
+    <string name="console_layout_controls">Botones disponibles</string>
+    <string name="console_layout_touchpad">Touchpad (tocar el vídeo)</string>
+    <string name="console_layout_close">Cerrar</string>
+    <string name="console_layout_slots">Disposiciones guardadas</string>
+    <string name="console_layout_slots_current">Disposiciones guardadas (en pantalla: %1$s)</string>
+    <string name="console_layout_save_new">Guardar la actual como nueva</string>
+    <string name="console_layout_default_name">Disposición</string>
+    <string name="console_layout_name">Nombre de la disposición</string>
+    <string name="console_layout_load">Cargar (sustituye a la de la pantalla)</string>
+    <string name="console_layout_overwrite">Sobrescribir con la de la pantalla</string>
+    <string name="console_layout_rename">Renombrar</string>
+    <string name="console_layout_delete">Borrar</string>
+    <string name="console_layout_loaded">Disposición «%1$s» cargada</string>
+    <string name="console_layout_saved">Disposición «%1$s» guardada</string>
+    <string name="console_layout_overwrite_confirm">¿Sobrescribir «%1$s» con la disposición de la pantalla?</string>
+    <string name="console_layout_delete_confirm">¿Borrar la disposición «%1$s»?</string>
+    <string name="console_layout_name_taken">Ya hay una disposición con ese nombre</string>
+    <string name="console_layout_reset_question">Volver a la disposición de fábrica. ¿Guardar antes una copia de la actual?</string>
+    <string name="console_layout_reset_keep">Guardar en un slot nuevo y restablecer</string>
+    <string name="console_layout_reset_discard">Restablecer sin guardar</string>
+    <string name="console_test_shell_opacity">Opacidad de la carcasa (0 = negro, solo la disposición)</string>
+    <string name="console_test_opacity">Opacidad de los controles</string>
+    <string name="console_test_lamp">Lámpara: el dedo ilumina los controles a su alrededor</string>
+    <string name="console_test_lamp_size">Tamaño de la lámpara</string>
+    <string name="console_test_move_bar">Subir o bajar la barra</string>
+    <string name="console_test_move_panel">Pasar el panel al otro lado</string>
+    <string name="console_test_group_dpad">Cruceta</string>
+    <string name="console_test_group_face">△ ○ ✕ □</string>
+    <string name="console_test_group_dead">Centro que no pulsa nada (rojo)</string>
+    <string name="console_test_group_green">Anillo que pulsa dos a la vez (verde)</string>
+    <string name="console_test_group_width">Ancho de los botones</string>
+    <string name="console_test_group_rotation">Giro (+ en el sentido del reloj)</string>
+    <string name="console_test_group_invert">Punta de los botones hacia dentro</string>
+    <string name="console_test_group_keep">Al salir del grupo, el botón sigue pulsado</string>
+    <string name="console_test_group_capture">Entrar arrastrando en un control desde fuera</string>
+    <string name="console_test_show_zones">Ver las zonas (rojo / verde)</string>
+    <string name="console_test_reset_options">Restablecer opciones</string>
+    <string name="console_test_reset_options_confirm">¿Devolver todas las opciones del mando táctil a sus valores de fábrica? Perderás tus ajustes finos.</string>
+    <string name="console_test_reset_action">Restablecer</string>
+    <string name="console_test_reset_done">Restablecido</string>
+    <string name="console_test_screen_info">Pantalla: %1$.0f × %2$.0f mm</string>
+    <string name="console_test_still">Quieto</string>
+    <string name="console_test_walking">Caminando</string>
+    <string name="console_test_trotting">Trotando</string>
+    <string name="console_test_running">Corriendo (L3)</string>
+    <string name="console_test_aim">L2 apuntar</string>
+    <string name="console_test_draw">R2 tensar…</string>
+    <string name="console_test_arrow">R2 suelto: ¡flecha! (%d %%)</string>
+    <string name="console_test_cancel">L2 suelto: tensión cancelada</string>
+    <string name="console_test_heavy">R2 ataque fuerte</string>
+    <string name="console_test_run">L3 correr</string>
+    <string name="console_test_focus">R3 foco</string>
+    <string name="console_test_focus_on">FOCO</string>
+    <string name="touch_edit_tied">🔗 Atado al vídeo</string>
+    <string name="touch_edit_free">Libre</string>
+    <string name="touch_edit_fill_video">Ocupar el vídeo</string>
+    <string name="touch_edit_fill_screen">Ocupar la pantalla</string>
+    <string name="console_test_auto_hide">Ocultar los controles si no se tocan</string>
+    <string name="console_test_auto_hide_off">Nunca</string>
+    <string name="touch_edit_hint">Arrastra el touchpad o sus esquinas. Doble toque: atarlo al vídeo o soltarlo. Pulsación larga: ocupar el vídeo.</string>
+    <string name="touch_edit_label_tied">TOUCHPAD · atado al vídeo</string>
+    <string name="touch_edit_label_free">TOUCHPAD · libre</string>
+    <string name="preferences_game_mode_title">Modo juego (menos toques sin querer)</string>
+    <string name="preferences_game_mode_summary">Deslizar desde un borde solo asoma las barras del sistema (un segundo deslizamiento va a Inicio o atrás), y el gesto atrás no actúa en los laterales donde está el mando táctil. Atrás sigue mostrando la barra del streaming.</string>
+    <string name="preferences_stream_dnd_title">No molestar durante la partida</string>
+    <string name="preferences_stream_dnd_summary">Activa el No molestar del teléfono durante el streaming y lo quita al salir (tus excepciones, como llamadas o alarmas, siguen sonando). Pide una vez el acceso a No molestar.</string>
+    <string name="preferences_stream_dnd_grant">Permite a Chiaki Shades usar No molestar en la lista y vuelve</string>
+    <string name="console_test_line_color">Color de las líneas</string>
+    <string name="console_test_line_theme">Carcasa</string>
+    <string name="console_test_line_blue">Azul</string>
+    <string name="console_test_line_black">Negro</string>
+    <string name="console_test_line_white">Blanco</string>
+    <string name="console_test_cinema">Inmersión cinematográfica (al ocultarse los controles, modo Carcasa)</string>
+    <string name="console_test_cinema_off">Apagada</string>
+    <string name="console_test_cinema_fit">Ajuste</string>
+    <string name="console_test_cinema_stretch">Estirar</string>
+    <string name="console_test_cinema_zoom">Zoom</string>
+    <string name="console_test_cinema_optical">Óptico</string>
+    <string name="console_layout_builtin_classic">Clásica</string>
+    <string name="console_layout_builtin_big">Pantalla grande</string>
+    <string name="console_layout_builtin_compact">Compacta (pantallas 3:2 y 4:3)</string>
+
+    <!-- 2.5.2: panel de opciones del mando por controles -->
+    <string name="console_pad_stick_left">Stick izquierdo</string>
+    <string name="console_pad_stick_right">Stick derecho</string>
+    <string name="console_sec_look">Aspecto</string>
+    <string name="console_sec_left">Stick izquierdo</string>
+    <string name="console_sec_right">Stick derecho</string>
+    <string name="console_sec_triggers">Gatillos L2 y R2</string>
+    <string name="console_sec_groups">Cruceta y △ ○ ✕ □</string>
+    <string name="console_sec_fine">Ajuste fino</string>
+    <string name="console_sec_fine_summary">Recorrido, fuerza para aplastar…</string>
+    <string name="console_stick_style">Cómo sigue al dedo</string>
+    <string name="console_stick_style_joystick">Joystick</string>
+    <string name="console_stick_style_drag">Arrastrar</string>
+    <string name="console_stick_style_hint">Joystick: el stick se inclina según lo lejos que arrastras desde donde pusiste el dedo. Arrastrar: como un ratón; al mover el dedo gira y quieto se para.</string>
+    <string name="console_stick_click_l">Clic del stick (L3)</string>
+    <string name="console_stick_click_r">Clic del stick (R3)</string>
+    <string name="console_stick_click_double">Doble toque</string>
+    <string name="console_stick_click_edge">Salir de la zona</string>
+    <string name="console_stick_click_off">Ninguno</string>
+    <string name="console_stick_click_hint">Doble toque: toca dos veces seguidas y deja el dedo puesto. Salir de la zona: saca el dedo por fuera del stick.</string>
+    <string name="console_stick_squash">Al aplastar el dedo</string>
+    <string name="console_stick_squash_hint">Aprieta el dedo con más fuerza contra la pantalla: mientras sigas apretando se mantiene este botón, y al aflojar se suelta.</string>
+    <string name="console_stick_sens">Sensibilidad al arrastrar</string>
+    <string name="console_stick_deadzone">Saltar la zona muerta del juego</string>
+    <string name="console_stick_deadzone_hint">Solo al arrastrar: empieza a mover un poco más allá de lo que el juego ignora.</string>
+    <string name="console_trigger_mode_l">Al apretar L2 con más fuerza</string>
+    <string name="console_trigger_mode_r">Al apretar R2 con más fuerza</string>
+    <string name="console_trigger_none">Nada</string>
+    <string name="console_trigger_pressure">Gatillo progresivo</string>
+    <string name="console_trigger_hold">Mantener un botón</string>
+    <string name="console_trigger_mode_hint">Gatillo progresivo: cuanto más aprietas el dedo, más se hunde el gatillo. Mantener un botón: al apretar fuerte se pulsa además el botón elegido.</string>
+    <string name="console_trigger_hold_button">Botón que se mantiene</string>
+    <string name="console_btn_none">Nada</string>
+    <string name="console_btn_pick_squash">Botón que se mantiene al aplastar</string>
+    <string name="console_btn_pick_hold">Botón que se mantiene al apretar fuerte</string>
+    <string name="console_btn_group_sticks">Sticks (clic)</string>
+    <string name="console_btn_group_triggers">Gatillos (a fondo)</string>
+    <string name="console_btn_group_shoulders">Hombros</string>
+    <string name="console_btn_group_face">Acciones</string>
+    <string name="console_btn_group_dpad">Cruceta</string>
+    <string name="console_btn_group_system">Sistema</string>
+    <string name="console_fine_travel_hint">Cuánto arrastras para llevar un stick al máximo. Vale para los dos sticks.</string>
+    <string name="console_fine_coyote">Tiempo para encadenar el doble toque</string>
+    <string name="console_fine_coyote_hint">Si vuelves a tocar antes de este tiempo cuenta como doble toque y el stick sigue moviéndose.</string>
+    <string name="console_fine_squash">Fuerza para aplastar (sin calibrar)</string>
+    <string name="console_fine_squash_hint">Cuánto más grande debe hacerse el contacto de tu dedo, frente a su tamaño normal, para contar como aplastar. Depende de tu teléfono y de tu dedo, y vale para todos los controles. En «Mando táctil y giroscopio» (Ajustes) con «Ver las zonas» se ve junto al dedo cuánto vas (por ejemplo x1.30 / 1.50).</string>
+    <string name="console_fine_trigger_base">Gatillo progresivo: al tocar</string>
+    <string name="console_fine_trigger_base_hint">Cuánto se hunde el gatillo nada más tocarlo.</string>
+    <string name="console_fine_trigger_full">Gatillo progresivo: aplastar para el máximo</string>
+    <string name="console_fine_trigger_full_hint">Cuánto hay que aplastar el dedo para llegar al gatillo a fondo.</string>
+    <string name="console_fine_group_hint">Cada grupo funciona como un stick: el centro rojo no pulsa nada, el anillo verde pulsa los dos vecinos a la vez.</string>
+    <string name="console_summary_squash">aplastar: %1$s</string>
+
+    <!-- 2.5.2: calibración de aplastar -->
+    <string name="calib_title_l">Pulgar izquierdo</string>
+    <string name="calib_title_r">Pulgar derecho</string>
+    <string name="calib_status_on">calibrado ✓</string>
+    <string name="calib_status_off">sin calibrar</string>
+    <string name="calib_button">Calibrar</string>
+    <string name="calib_delete">Borrar calibración</string>
+    <string name="calib_hint">Aplastar usa la calibración del pulgar de este lado: se mide tu pulgar en este teléfono, apoyado, apretando y aligerando. Si aplastar no responde bien, vuelve a calibrar. Sin calibrar se usa «Fuerza para aplastar» (Ajuste fino), que es menos fiable.</string>
+    <string name="calib_triggers_hint">Los gatillos usan la calibración del pulgar de su lado: L2 la del izquierdo y R2 la del derecho (se calibran en la sección de cada stick).</string>
+    <string name="calib_wiz_title_l">Calibrar el pulgar izquierdo</string>
+    <string name="calib_wiz_title_r">Calibrar el pulgar derecho</string>
+    <string name="calib_wiz_touch">Apoya el pulgar en cualquier punto de la pantalla</string>
+    <string name="calib_wiz_normal">Muévelo con normalidad, como al jugar</string>
+    <string name="calib_wiz_press">APRIETA FUERTE (%1$d de %2$d)</string>
+    <string name="calib_wiz_ease">Suelta sin levantar el dedo (%1$d de %2$d)</string>
+    <string name="calib_wiz_done">Listo ✓ Calibrado</string>
+    <string name="calib_wiz_failed">No noté bastante diferencia entre apoyar y apretar. Vuelve a intentarlo apretando más fuerte.</string>
+    <string name="calib_wiz_lifted">Levantaste el dedo: empieza de nuevo apoyando el pulgar</string>
+    <string name="calib_wiz_cancel">Cancelar</string>
+    <string name="calib_wiz_retry">Reintentar</string>
+    <string name="calib_wiz_ok">Listo</string>
+    <string name="calib_wiz_size">Medida del contacto: %1$d</string>
+
+    <!-- 2.5.3: el giroscopio como stick -->
+    <string name="gyro_sec">Giroscopio como stick</string>
+    <string name="gyro_summary_off">Apagado</string>
+    <string name="gyro_summary_hold">mientras mantienes %1$s</string>
+    <string name="gyro_summary_clutch">en pausa mientras mantienes %1$s</string>
+    <string name="gyro_enable">El giroscopio mueve un stick</string>
+    <string name="gyro_enable_hint">Para los juegos que no leen el giroscopio del mando: al mover el teléfono se mueve el stick de la cámara, sumado a lo que haga tu pulgar. Mientras juegas aparece un botón en la barra.</string>
+    <string name="gyro_target">Stick que mueve</string>
+    <string name="gyro_target_right">Derecho (cámara)</string>
+    <string name="gyro_target_left">Izquierdo</string>
+    <string name="gyro_style">Estilo</string>
+    <string name="gyro_style_mouse">Ratón</string>
+    <string name="gyro_style_tilt">Inclinación</string>
+    <string name="gyro_style_mouse_hint">La velocidad con que giras el teléfono es lo que se mueve el stick: giras y la cámara gira, paras y se para. Lo mejor para apuntar. No hace falta centrarlo nunca.</string>
+    <string name="gyro_style_tilt_hint">Lo que lo inclinas, desde donde empezaste, es lo que se mueve el stick: de lado como un volante, adelante y atrás para arriba y abajo. Lo mejor para conducir o inclinarse. El centro es donde estaba el teléfono al activarse (usa Recentrar).</string>
+    <string name="gyro_activation">Cuándo funciona</string>
+    <string name="gyro_act_always">Siempre</string>
+    <string name="gyro_act_hold">Solo mientras mantienes las entradas</string>
+    <string name="gyro_act_clutch">En pausa mientras mantienes las entradas</string>
+    <string name="gyro_activation_hint">«Solo mientras mantienes» va bien para apuntar (L2 es el habitual: apuntas y el teléfono dirige). «En pausa mientras mantienes» deja el giroscopio siempre encendido y lo para mientras mantienes las entradas: con «stick derecho» apuntas con el teléfono y, en cuanto empujas el stick con el pulgar, el giro se calla para el ajuste fino. «Pulsar las entradas juntas» empieza apagado, y los botones siguen llegando al juego. Las entradas pueden ser botones o sticks, varias a la vez (L3 + R3). También hay un botón de giroscopio para el mando táctil (Controles, en el editor) y el de la barra: todos encienden y apagan lo mismo, y se recuerda.</string>
+    <string name="gyro_horizontal">Izquierda y derecha con</string>
+    <string name="gyro_horizontal_yaw">Girar el teléfono</string>
+    <string name="gyro_horizontal_roll">Volcarlo de lado (volante)</string>
+    <string name="gyro_calibration">Calibración</string>
+    <string name="gyro_sens">Sensibilidad</string>
+    <string name="gyro_sens_y">Vertical, respecto a la horizontal</string>
+    <string name="gyro_tilt_range">Inclinación para el stick a tope</string>
+    <string name="gyro_deadzone">Zona muerta</string>
+    <string name="gyro_deadzone_hint">Los movimientos menores que esto no hacen nada: el temblor de la mano. Súbela si la cámara se mueve con el teléfono quieto.</string>
+    <string name="gyro_smooth">Suavizado</string>
+    <string name="gyro_smooth_hint">Alisa los pequeños temblores, a costa de un ligero retraso.</string>
+    <string name="gyro_curve">Curva de respuesta</string>
+    <string name="gyro_curve_hint">1,00 = proporcional. Más alta: los movimientos pequeños son más finos y los grandes rápidos.</string>
+    <string name="gyro_anti_deadzone">Zona muerta del juego</string>
+    <string name="gyro_invert_x">Invertir izquierda y derecha</string>
+    <string name="gyro_invert_y">Invertir arriba y abajo</string>
+    <string name="gyro_mute_native">Callar el giroscopio del mando mientras tanto</string>
+    <string name="gyro_mute_native_hint">Mientras este mueve el stick, la consola no recibe giroscopio: un juego que lea los dos apuntaría doble.</string>
+    <string name="gyro_recenter">Recentrar</string>
+    <string name="gyro_recentered">Centrado</string>
+    <string name="gyro_recenter_hint">El centro del stick pasa a donde está el teléfono ahora (estilo Inclinación). En la barra, una pulsación larga en el botón del giroscopio hace lo mismo.</string>
+    <string name="gyro_reset">Restablecer opciones del giroscopio</string>
+    <string name="gyro_reset_confirm">Las opciones del giroscopio vuelven a sus valores de fábrica (sigue encendido).</string>
+    <string name="gyro_button_description">Stick por giroscopio (pulsación larga: recentrar)</string>
+    <string name="gyro_paused_toast">Stick por giroscopio en pausa</string>
+    <string name="gyro_resumed_toast">Stick por giroscopio activado</string>
+    <string name="gyro_hud_off">Giro: en pausa</string>
+    <string name="gyro_hud_waiting">Giro: esperando %1$s</string>
+    <string name="gyro_hud_clutch">Giro: en pausa (%1$s)</string>
+    <string name="gyro_hud_on">Giro: activo (%1$.2f, %2$.2f)</string>
+    <string name="gyro_act_toggle">Pulsar las entradas juntas lo enciende o apaga</string>
+    <string name="gyro_summary_toggle">%1$s lo enciende y apaga</string>
+    <string name="gyro_hud_toggle_off">Giro: apagado (%1$s lo enciende)</string>
+    <string name="preferences_gameplay_toasts_title">Ver avisos de acciones durante la partida</string>
+    <string name="preferences_gameplay_toasts_summary">Apagado por defecto: mientras juegas no salen mensajitos sobre el juego (giroscopio activado o en pausa, disposición cargada o guardada…). Actívalo para volver a verlos. Fuera de la partida siempre se ven, y los errores también.</string>
+    <string name="gyro_unavailable">El giroscopio está desactivado: actívalo en las opciones (Giroscopio → El giroscopio mueve un stick) para usar este botón</string>
+    <string name="gyro_no_hardware">Este aparato no tiene giroscopio, así que aquí el giroscopio no puede mover un stick.</string>
+    <string name="console_sec_gyro">Giroscopio</string>
+    <string name="gyro_summary_native_on">Giroscopio del mando encendido</string>
+    <string name="gyro_summary_native_off">Giroscopio del mando apagado</string>
+    <string name="gyro_summary_stick">stick: %1$s</string>
+    <string name="gyro_no_hardware_short">No disponible: sin giroscopio</string>
+    <string name="gyro_inputs">Entradas</string>
+    <string name="gyro_pick_inputs">¿Qué entradas?</string>
+    <string name="gyro_inputs_hint">Todo lo marcado tiene que estar pulsado a la vez (por ejemplo L3 + R3).</string>
+    <string name="gyro_inputs_min">Elige al menos una</string>
+    <string name="gyro_input_group_sticks">Sticks (mientras se empujan)</string>
+    <string name="gyro_input_stick_l">Stick izquierdo</string>
+    <string name="gyro_input_stick_r">Stick derecho</string>
+    <string name="gyro_input_stick_l_short">stick izquierdo</string>
+    <string name="gyro_input_stick_r_short">stick derecho</string>
+    <string name="gyro_stick_threshold">Cuánto hay que empujar un stick para contar</string>
+    <string name="preferences_stats_overlay_title">Ver estadísticas en la partida</string>
+    <string name="preferences_stats_overlay_summary">Pequeñas gráficas sobre el juego: bitrate, pérdidas, ritmo de imagen y resolución. En la partida, pulsación larga en ✕ de la barra para verlas u ocultarlas</string>
+    <string name="stats_overlay_on">Estadísticas visibles</string>
+    <string name="stats_overlay_off">Estadísticas ocultas</string>
+    <string name="stats_mbps_target">Mbps (objetivo %.1f)</string>
+    <string name="stats_picture">Imagen  %1$d fps · máx %2$d ms</string>
+    <string name="stats_losses">Pérdidas  %1$.1f %% · %2$d perdidos · %3$d reparados</string>
+    <string name="gyro_stick_threshold_hint">Al soltar el stick tarda un instante (una fracción de segundo) en contar, para que un pulgar que tiembla al volver al centro no haga parpadear el giro.</string>
+
+    <!-- perfiles de calidad (2.5.8) -->
+    <string name="quality_profile_title">Perfil de calidad</string>
+    <string name="quality_profile_max">Máxima calidad</string>
+    <string name="quality_profile_balanced">Equilibrado</string>
+    <string name="quality_profile_light">Ligero</string>
+    <string name="quality_profile_ultralight">Ultraligero</string>
+    <string name="quality_profile_custom">Personalizado</string>
+    <string name="quality_profile_max_description">La imagen más nítida. Para WiFi rápido y cerca del router.</string>
+    <string name="quality_profile_balanced_description">Buena imagen y buena estabilidad. Lo recomendado para casi todo.</string>
+    <string name="quality_profile_light_description">Aguanta mejor las redes flojas y usa menos datos.</string>
+    <string name="quality_profile_ultralight_description">Para redes muy débiles o datos móviles justos.</string>
+    <string name="quality_profile_custom_description">Tus valores.</string>
+    <string name="quality_profile_reset_title">Restablecer perfil</string>
+    <string name="quality_profile_reset_summary">Volver a los valores de %1$s</string>
+    <string name="quality_profile_save_title">Guardar como Personalizado</string>
+    <string name="quality_profile_save_summary">Copiar estos valores en Personalizado</string>
+    <string name="quality_bitrate_less">1 Mbps menos</string>
+    <string name="quality_bitrate_more">1 Mbps más</string>
+    <string name="preferences_offer_lower_res_title">Dejar que la PS5 baje la resolución</string>
+    <string name="preferences_offer_lower_res_summary">Si la red empeora, la consola puede bajar de resolución sola y volver a subir después. Se aplica en la siguiente conexión</string>
+    <string name="loss_report_title">Avisar a la PS5 de las pérdidas</string>
+    <string name="loss_report_summary">Igual para todos los perfiles. Se aplica en la siguiente conexión</string>
+    <string name="loss_report_step_off">No avisar</string>
+    <string name="loss_report_step_all">Todo</string>
+    <string-array name="loss_report_explanations">
+        <item>La PS5 cree que no se pierde nada: nunca añade piezas de repuesto y la red mala se ve como imagen rota (lo que hacía la app original).</item>
+        <item>La PS5 añade algo de repuesto y mantiene la calidad.</item>
+        <item>Lo recomendado. La PS5 añade piezas de repuesto sin bajar la calidad.</item>
+        <item>Más protección, pero con red mala la PS5 empieza a bajar la calidad y tarda minutos en volver.</item>
+        <item>Más protección, pero con red mala la PS5 baja la calidad y tarda minutos en volver.</item>
+        <item>Más protección, pero con red mala la PS5 baja la calidad rápido y tarda minutos en volver.</item>
+        <item>Toda la verdad: la máxima protección, pero cada mal momento baja la calidad y apenas vuelve durante la partida.</item>
+    </string-array>
+    <string name="quality_sheet_title">Calidad de la conexión</string>
+    <string name="quality_sheet_adjust">Ajustes</string>
+    <string name="quality_sheet_done">Listo</string>
+    <string name="quality_sheet_loss">Aviso de pérdidas a la PS5: %1$s</string>
+    <string name="quality_pill_label">Calidad</string>
+    <string name="action_tips">Consejos</string>
+    <string name="welcome_title">¡Hola! Esto es Chiaki Shades 😎</string>
+    <string name="welcome_body">Tu PlayStation, en la palma de la mano. Así de sencillo:\n\n1. Pulsa + y registra tu consola. Es una sola vez: entras con tu cuenta de PlayStation y escribes el PIN que te muestra la consola.\n\n2. Toca su tarjeta y a jugar. La calidad se ajusta sola a tu red y a tu pantalla.\n\n3. En plena partida, pulsa Atrás o toca con tres dedos para sacar la barra: mando táctil, color, modos de pantalla y salir.\n\n¿Y lo de Shades? Las gafas de sol traen un par de trucos: una lente que llena tu pantalla sin barras negras y looks de color de cine, para que el juego luzca hasta en la pantalla más pequeña.\n\nPonte a gusto, ten el mando a mano y que empiece la partida.</string>
+    <string name="welcome_tips_toggle">Un consejo al día en la pantalla principal</string>
+    <string name="welcome_tips_title">Todos los consejos</string>
+    <string name="welcome_done">¡A jugar!</string>
+    <string name="preferences_tips_title">Consejos</string>
+    <string name="preferences_tips_summary">Un consejo corto sobre la app en la pantalla principal, uno al día</string>
+    <string name="quality_profile_auto">Auto</string>
+    <string name="quality_profile_auto_description">Antes de cada conexión la app elige el bitrate según tu red, y también la resolución si no eliges una.</string>
+    <string name="quality_profile_auto_values">Resolución %1$s · bitrate de la app</string>
+    <string name="quality_profile_auto_summary">Auto · resolución %1$s, bitrate elegido por la app</string>
+    <string name="quality_auto_resolution_auto">Auto</string>
+    <string name="quality_auto_resolution_title">Resolución</string>
+    <string name="quality_auto_resolution_help">Auto también la baja con poca batería, calor o mala red. Si eliges una, se respeta siempre y solo se ajusta el bitrate.</string>
+    <string name="quality_auto_now">%1$s ahora: %2$s · %3$d Mbps</string>
+    <string name="quality_auto_no_console">Cuando se pueda llegar a una consola, aquí verás qué pediría la próxima conexión y por qué.</string>
+    <string name="auto_changed_toast">Auto: %1$s · %2$d Mbps (algo acaba de cambiar)</string>
+    <string name="auto_reason_home">en casa</string>
+    <string name="auto_reason_remote">fuera de casa</string>
+    <string name="auto_reason_mobile">datos móviles</string>
+    <string name="auto_reason_signal_good">WiFi buena (%1$d dBm)</string>
+    <string name="auto_reason_signal_ok">WiFi regular (%1$d dBm)</string>
+    <string name="auto_reason_signal_weak">WiFi débil (%1$d dBm)</string>
+    <string name="auto_reason_rtt">responde en %1$d ms</string>
+    <string name="auto_reason_rtt_unsteady">respuesta irregular</string>
+    <string name="auto_reason_guess">consola aún sin medir (estimación)</string>
+    <string name="auto_reason_charging">cargando</string>
+    <string name="auto_reason_battery_low">batería al %1$d %%</string>
+    <string name="auto_reason_hot">aparato caliente</string>
+    <string name="auto_reason_penalty">la partida anterior tuvo problemas</string>
+    <string name="auto_reason_screen">pantalla de %1$d px: más resolución no se notaría</string>
+
+    <!-- Iniciar sesión con PlayStation (en el navegador) y cuentas -->
+    <string name="psn_login_title">Iniciar sesión con PlayStation</string>
+    <string name="psn_login_privacy">Inicias sesión en la web de Sony, en tu propio navegador. Esta app nunca ve tu contraseña ni tu sesión de Sony: solo recibe el número de tu cuenta, que la consola pide al vincular.</string>
+    <string name="psn_login_step1">1. Abre la página de Sony e inicia sesión.</string>
+    <string name="psn_login_open">Abrir la página de Sony</string>
+    <string name="psn_login_step2">2. Cuando la página diga \"redirect\", manda su dirección aquí: Compartir → Chiaki Shades. O copia la dirección y vuelve.</string>
+    <string name="psn_login_use_copied">Usar el enlace copiado</string>
+    <string name="psn_login_paste_help">O pega aquí la dirección:</string>
+    <string name="psn_login_paste_hint">https://remoteplay.dl.playstation.net/…</string>
+    <string name="psn_login_continue">Continuar</string>
+    <string name="psn_login_shared_browser">¿Inicias sesión con la cuenta de otra persona? Su sesión de Sony queda abierta en este navegador: ciérrala en la web de Sony al terminar, o usa una pestaña de incógnito.</string>
+    <string name="psn_login_working">Obteniendo la cuenta…</string>
+    <string name="psn_login_done">Cuenta lista: %1$s</string>
+    <string name="psn_login_no_browser">No se encontró ningún navegador para abrir la página de Sony.</string>
+    <string name="psn_login_clipboard_empty">Lo copiado no es la dirección \"redirect\" de Sony. Copia la dirección entera de la barra del navegador y vuelve a intentarlo.</string>
+    <string name="psn_login_no_code">Esa no es la dirección \"redirect\" de Sony (debe contener remoteplay/redirect?code=…).</string>
+    <string name="psn_login_code_rejected">Sony no aceptó el enlace. Cada enlace sirve una sola vez y durante pocos minutos: inicia sesión de nuevo y usa el nuevo.</string>
+    <string name="psn_login_bad_answer">Sony respondió algo inesperado. Inténtalo más tarde, o escribe el Account ID a mano en Avanzado.</string>
+    <string name="psn_login_network">No se pudo contactar con Sony. Revisa la conexión y vuelve a intentarlo.</string>
+    <string name="psn_account_name_title">Nombre de la cuenta</string>
+    <string name="psn_account_name_message">Un nombre para distinguir esta cuenta (por ejemplo, tu nombre de PSN).</string>
+    <string name="psn_account_default_name">Cuenta PlayStation</string>
+    <string name="regist_psn_login">Iniciar sesión con PlayStation</string>
+    <string name="regist_psn_account_ready">Cuenta: %1$s ✓</string>
+    <plurals name="psn_adopt_old_message">
+        <item quantity="one">Hay %1$d consola registrada de antes de guardar cuentas. ¿Se registró con la cuenta de %2$s?</item>
+        <item quantity="other">Hay %1$d consolas registradas de antes de guardar cuentas. ¿Se registraron con la cuenta de %2$s?</item>
+    </plurals>
+    <string name="psn_adopt_old_yes">Sí, son suyas</string>
+    <string name="psn_adopt_old_no">No / no lo sé</string>
+    <string name="account_pill_label">Cuenta · %1$s</string>
+    <string name="accounts_title">Cuenta PlayStation</string>
+    <string name="accounts_explain">La cuenta elegida es la que conecta (la consola entra con ese usuario) y con la que se registran las consolas.</string>
+    <string name="accounts_add">Añadir cuenta</string>
+    <string name="accounts_more">Más</string>
+    <string name="accounts_rename">Cambiar nombre</string>
+    <string name="accounts_forget">Olvidar</string>
+    <string name="accounts_paused_game_message">Hay una partida en pausa en %1$s. Al cambiar de cuenta se cerrará.</string>
+    <string name="accounts_paused_game_close">Cerrar partida y cambiar</string>
+    <string name="accounts_color">Color</string>
+    <string name="accounts_color_title">Color de %1$s</string>
+    <string-array name="account_color_names">
+        <item>Coral</item>
+        <item>Ámbar</item>
+        <item>Lima</item>
+        <item>Menta</item>
+        <item>Turquesa</item>
+        <item>Cielo</item>
+        <item>Lavanda</item>
+        <item>Rosa</item>
+    </string-array>
+    <string name="accounts_forget_message">¿Olvidar la cuenta %1$s en este teléfono?</string>
+    <plurals name="accounts_forget_message_consoles">
+        <item quantity="one">¿Olvidar la cuenta %1$s en este teléfono? También se olvida su %2$d consola registrada (la consola sigue teniendo este dispositivo vinculado hasta que lo quites en ella).</item>
+        <item quantity="other">¿Olvidar la cuenta %1$s en este teléfono? También se olvidan sus %2$d consolas registradas (las consolas siguen teniendo este dispositivo vinculado hasta que lo quites en ellas).</item>
+    </plurals>
+    <plurals name="accounts_consoles">
+        <item quantity="one">%d consola registrada</item>
+        <item quantity="other">%d consolas registradas</item>
+    </plurals>
+    <string name="regist_step_account">1 · Cuenta PlayStation</string>
+    <string name="regist_step_console">2 · Consola</string>
+    <string name="regist_step_pin">3 · PIN</string>
+    <string name="regist_account_none">Inicia sesión una vez; la app guarda la cuenta para la próxima.</string>
+    <string name="regist_account_change">Cambiar de cuenta</string>
+    <string name="regist_account_missing">Primero inicia sesión con PlayStation (paso 1), o escribe el Account ID en Avanzado.</string>
+    <string name="regist_console_searching">Buscando consolas en esta red…</string>
+    <string name="regist_console_pick">Elige tu consola:</string>
+    <string name="regist_console_standby">en reposo (enciéndela para ver el PIN)</string>
+    <string name="regist_console_ready">encendida</string>
+    <string name="regist_console_manual">Escribir la dirección a mano</string>
+    <string name="regist_pin_now_ps5">Ahora, en la PS5, con el usuario de esta cuenta:</string>
+    <string name="regist_pin_now_ps4">Ahora, en la PS4, con el usuario de esta cuenta:</string>
+    <string name="regist_pin_expires">El PIN que aparece dura unos minutos.</string>
+    <string name="regist_advanced">Avanzado</string>
+    <string name="regist_manual_id_help">Account ID escrito a mano (8 bytes, base64), por ejemplo el de scripts/psn-account-id.py. Si lo rellenas, se usa en lugar de la cuenta elegida arriba.</string>
+    <string name="regist_online_id_help">PS4 anterior a la 7.0: se registra con el ID en línea (tu nombre de usuario de PSN, con mayúsculas y minúsculas exactas).</string>
+    <string name="title_regist">Registrar consola</string>
+    <string name="action_register">Registrar consola</string>
+    <string name="hint_regist_host">Dirección de la consola</string>
+    <string name="regist_broadcast">Difusión (broadcast)</string>
+    <string name="hint_regist_pin">PIN</string>
+    <string name="action_regist">Registrar</string>
+    <string name="regist_pin_instructions_ps5_navigation">Ajustes →\nSistema → Uso a distancia →\nVincular dispositivo</string>
+    <string name="regist_pin_instructions_ps4_navigation">Ajustes →\nAjustes de conexión de Uso a distancia →\nAñadir dispositivo</string>
+    <string name="entered_host_invalid">Escribe una dirección válida</string>
+    <string name="regist_psn_online_id_invalid">Escribe un ID de PSN válido</string>
+    <string name="regist_psn_account_id_invalid">Escribe un Account ID válido (8 bytes en base64)</string>
+    <string name="regist_pin_invalid">Escribe un PIN válido de %d cifras</string>
+    <string name="hint_regist_psn_online_id">ID en línea de PSN (nombre de usuario, distingue mayúsculas)</string>
+    <string name="hint_regist_psn_account_id">Account ID de PSN (8 bytes, base64)</string>
+    <string name="action_regist_discard">Cancelar</string>
+    <string name="action_regist_overwrite">Sobrescribir</string>
+    <string name="regist_info_success">Registro completado.</string>
+    <string name="regist_info_failed">El registro falló.</string>
+    <string name="alert_regist_duplicate">La consola con MAC %s ya está registrada con esta cuenta. ¿Sobrescribir el registro anterior?</string>
+    <string name="registered_host_account">cuenta %1$s</string>
+    <string name="registered_host_no_account">cuenta desconocida (registrada antes de guardar cuentas)</string>
+    <string name="display_host_other_account">Registrada con %1$s · toca para registrarla con esta cuenta</string>
+    <string name="psn_login_share_link">Copiar o compartir enlace</string>
+    <plurals name="psn_adopt_done">
+        <item quantity="one">Cuenta lista: %1$s · %2$d consola asignada</item>
+        <item quantity="other">Cuenta lista: %1$s · %2$d consolas asignadas</item>
+    </plurals>
+    <string name="regist_info_running">Registrando…</string>
+    <string name="regist_info_stopped">Registro detenido.</string>
+    <string name="regist_failed_hint">Revisa que el PIN sea el que se ve ahora en pantalla (caduca en pocos minutos), que la consola esté encendida con el usuario de esta cuenta y que esté en la misma red.</string>
+    <string name="regist_show_details">Ver detalles</string>
+    <string name="regist_hide_details">Ocultar detalles</string>
+    <string name="regist_back">Volver</string>
+    <string name="regist_console_generic">La consola</string>
+    <string name="regist_done">%1$s registrada</string>
+    <string name="regist_done_account">%1$s registrada con la cuenta %2$s</string>
+    <string name="action_share_log">Compartir registro técnico</string>
+
+    <!-- mapeo del mando físico (2.6.0-rc3, settings/PadMappingActivity.kt) -->
+    <string name="pad_mapping_title">Mando físico</string>
+    <string name="pad_mapping_summary">Qué hace cada botón de tu mando: click del touchpad, teclas al mantener, botones de volumen. Con probador en vivo.</string>
+    <string name="pad_mapping_hint">Pulsa botones de tu mando: esto es lo que recibe la consola. Toca una parte del dibujo o una fila para cambiar sus teclas.</string>
+    <string name="pad_mapping_no_controller">Todavía no se ha visto ningún mando: pulsa cualquier botón.</string>
+    <string name="pad_mapping_device_analog">%1$s · gatillos analógicos</string>
+    <string name="pad_mapping_device_digital">%1$s · gatillos como botón</string>
+    <string name="pad_group_face">Botones</string>
+    <string name="pad_group_dpad">Cruceta</string>
+    <string name="pad_group_shoulders">Hombros y gatillos</string>
+    <string name="pad_group_sticks">Clic de los sticks</string>
+    <string name="pad_group_center">Centro</string>
+    <string name="pad_target_cross">✕ Equis</string>
+    <string name="pad_target_circle">○ Círculo</string>
+    <string name="pad_target_square">□ Cuadrado</string>
+    <string name="pad_target_triangle">△ Triángulo</string>
+    <string name="pad_target_dpad_up">Arriba</string>
+    <string name="pad_target_dpad_down">Abajo</string>
+    <string name="pad_target_dpad_left">Izquierda</string>
+    <string name="pad_target_dpad_right">Derecha</string>
+    <string name="pad_target_l3">L3 (clic del stick izquierdo)</string>
+    <string name="pad_target_r3">R3 (clic del stick derecho)</string>
+    <string name="pad_target_options">Options</string>
+    <string name="pad_target_share">Share (Crear)</string>
+    <string name="pad_target_touchpad">Click del touchpad</string>
+    <string name="pad_target_ps">Botón PS</string>
+    <string name="pad_no_key">—</string>
+    <string name="pad_key_held">mantener %1$s</string>
+    <string name="pad_swap_face">Intercambiar ✕/○ y □/△</string>
+    <string name="pad_swap_face_done">✕/○ y □/△ intercambiados</string>
+    <string name="pad_reset">Restablecer</string>
+    <string name="pad_reset_confirm">¿Volver al mapeo de fábrica? (Select = click del touchpad, mantener Select = PS)</string>
+    <string name="pad_assign_press">Pulsa una tecla de tu mando…</string>
+    <string name="pad_assign_got">Tecla: %1$s</string>
+    <string name="pad_assign_hold">Solo al mantenerla (0,4 s)</string>
+    <string name="pad_assign_hold_note">Una tecla con uso al mantener manda su pulsación corta al soltarla. Las demás se mandan al instante.</string>
+    <string name="pad_assign_conflict">Ahora hace %1$s: dejará de hacerlo.</string>
+    <string name="pad_assign_current">Sus teclas (toca una para quitarla):</string>
+    <string name="pad_assign_none">Todavía sin tecla.</string>
+    <string name="pad_assign_add">Añadir</string>
+    <string name="pad_assign_full">Dos teclas como máximo: se cambiará la más antigua.</string>
+    <string name="pad_assign_analog">El gatillo de tu mando es analógico: siempre funciona como %1$s. Aquí puedes añadir otra tecla.</string>
+    <string name="pad_assign_removed">%1$s quitada</string>
+    <string name="key_name_volume_up">Volumen +</string>
+    <string name="key_name_volume_down">Volumen −</string>
+    <string name="key_name_back">Atrás</string>
+    <string name="key_name_mode">Home/Guía</string>
+    <string name="key_name_thumbl">Clic stick izquierdo</string>
+    <string name="key_name_thumbr">Clic stick derecho</string>
+    <string name="key_name_dpad">Cruceta %1$s</string>
+    <string name="key_name_button">Botón %1$d</string>
+
+    <!-- Ajustes por páginas (2.6.0-rc3) -->
+    <string name="settings_page_stream">Stream</string>
+    <string name="settings_page_stream_summary">Perfil de calidad, resolución, bitrate, fps y códec</string>
+    <string name="settings_page_general">General</string>
+    <string name="settings_page_general_summary">Consolas, consejos, vibración, modo juego, ventana pequeña, reconexión rápida, volumen y registros</string>
+    <string name="settings_page_image">Imagen</string>
+    <string name="settings_page_image_summary">Calidad (HQ), debanding, stretch óptico y color</string>
+    <string name="settings_page_appearance">Apariencia</string>
+    <string name="settings_page_appearance_summary">Animación de las tarjetas de consola e idioma</string>
+    <string name="settings_page_backup">Copia de seguridad</string>
+    <string name="settings_page_backup_summary">Exportar o importar tus ajustes</string>
+
+    <!-- perfiles de mapeo del mando físico (2.6.0-rc3, MappingSlots) -->
+    <string name="pad_profiles">Perfiles</string>
+    <string name="pad_profile_current">Perfil: %1$s</string>
+    <string name="pad_profiles_title">Perfiles de mapeo</string>
+    <string name="pad_profile_default">De fábrica</string>
+    <string name="pad_profile_swapped">✕/○ y □/△ intercambiados (estilo Nintendo, 8BitDo)</string>
+    <string name="pad_profile_save_new">Guardar como nuevo</string>
+    <string name="pad_profile_close">Cerrar</string>
+    <string name="pad_profile_load">Cargar</string>
+    <string name="pad_profile_overwrite">Sobrescribir con el mapeo actual</string>
+    <string name="pad_profile_rename">Renombrar</string>
+    <string name="pad_profile_delete">Borrar</string>
+    <string name="pad_profile_overwrite_confirm">¿Sobrescribir «%1$s» con el mapeo actual?</string>
+    <string name="pad_profile_delete_confirm">¿Borrar «%1$s»?</string>
+    <string name="pad_profile_name">Nombre del perfil</string>
+    <string name="pad_profile_default_name">Mi mando</string>
+    <string name="pad_profile_name_taken">Ya hay un perfil con ese nombre</string>
+    <string name="pad_profile_loaded">%1$s cargado</string>
+    <string name="pad_profile_saved">%1$s guardado</string>
+
+    <!-- cargar un perfil o una disposición con cambios sin guardar (2.6.0-rc4) -->
+    <string name="unsaved_title">%1$s tiene cambios sin guardar</string>
+    <string name="unsaved_title_none">El mapeo actual no está guardado en ningún perfil</string>
+    <string name="unsaved_save_in">Guardar en %1$s</string>
+    <string name="unsaved_save_new">Guardar como nuevo</string>
+    <string name="unsaved_discard">Descartar los cambios</string>
+
+    <!-- idioma de la app (2.6.0-rc4) -->
+    <string name="preferences_language_title">Idioma</string>
+    <string-array name="preferences_language_entries">
+        <item>Sistema</item>
+        <item>Español</item>
+        <item>English</item>
+    </string-array>
+
+    <!-- vibración (2.6.0-rc4) -->
+    <string name="preferences_rumble_enabled_title">Vibración</string>
+    <string name="preferences_rumble_enabled_summary">Vibrar cuando vibra el juego</string>
+    <string name="preferences_rumble_target_title">Dónde vibra</string>
+    <string-array name="preferences_rumble_target_entries">
+        <item>Automático (el mando si puede, si no este aparato)</item>
+        <item>Este aparato</item>
+        <item>El mando</item>
+        <item>Los dos</item>
+    </string-array>
+    <string name="preferences_rumble_strength_title">Fuerza de la vibración</string>
+    <string name="preferences_rumble_strength_summary">También en la partida: pulsación larga en el altavoz. En motores sencillos se imita con pulsos rápidos</string>
+    <string name="stream_rumble_button">Vibración sí o no</string>
+    <string name="stream_rumble_off">No</string>
+    <string name="preferences_rumble_ps5_title">Vibración en juegos de PS5</string>
+    <string name="preferences_rumble_ps5_summary">La app se presenta como un DualSense y convierte su vibración en rumble. Apágalo si algún juego se porta raro</string>
+
+    <!-- Ajustes → Acerca de (2.7.0) -->
+    <string name="settings_page_about">Acerca de</string>
+    <string name="settings_page_about_summary">Versión, código fuente, licencia y créditos</string>
+    <string name="about_version_summary">Versión %1$s · una versión modificada de chiaki-ng (2026)</string>
+    <string name="about_source_title">Código fuente</string>
+    <string name="about_license_title">Licencia: GNU AGPL-3.0</string>
+    <string name="about_license_summary">Software libre bajo la Licencia Pública General Affero de GNU 3.0, con una excepción para enlazar con OpenSSL. Se ofrece SIN NINGUNA GARANTÍA. Toca para leer la licencia</string>
+    <string name="about_credits_title">Créditos</string>
+    <string name="about_credits_summary">Construida sobre chiaki-ng (Street Pea y colaboradores), que viene de Chiaki (Florian Märkl), a través de chiaki-ng-android-extended (SalamiTheMan). Incluye oboe, curl, nanopb, Jerasure, gf-complete y AndroidX, cada uno con su propia licencia. Toca para ver chiaki-ng</string>
+    <string name="about_trademarks_summary">Sin relación con Sony Interactive Entertainment ni respaldada por ella. PlayStation, PS4, PS5 y DualSense son marcas de Sony Interactive Entertainment.</string>
+    <string name="about_no_browser">No hay ninguna app para abrir el enlace</string>
+
+    <!-- texts of the original app that were never translated (2.7.0) -->
+    <string name="title_settings">Ajustes</string>
+    <string name="alert_message_session_quit">La sesión terminó: %s</string>
+    <string name="alert_message_session_create_error">No se pudo crear la sesión: %s</string>
+    <string name="alert_message_login_pin_request">PIN de inicio de sesión:</string>
+    <string name="alert_message_login_pin_request_incorrect">El PIN no es correcto.\nPIN de inicio de sesión:</string>
+    <string name="action_login_pin_connect">Conectar</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_discover">Buscar consolas automáticamente</string>
+    <string name="display_host_host">Dirección: %s</string>
+    <string name="display_host_id_registered">ID: %s (registrada)</string>
+    <string name="display_host_app_title_id">App: %s\nID del juego: %s</string>
+    <string name="action_add_manual">Añadir consola a mano</string>
+    <string name="title_edit_manual">Consola añadida a mano</string>
+    <string name="action_add_manual_save">Guardar</string>
+    <string name="hint_add_manual_regist_host">Consola registrada</string>
+    <string name="add_manual_regist_on_connect">Registrar al conectar por primera vez</string>
+    <string name="preferences_registered_hosts_title">Consolas registradas</string>
+    <string name="preferences_logs_title">Registros de sesión</string>
+    <string name="preferences_logs_summary">Registros de las sesiones anteriores, para investigar fallos</string>
+    <string name="preferences_registered_hosts_summary">Registradas ahora: %d</string>
+    <string name="preferences_resolution_title">Resolución</string>
+    <string name="preferences_codec_title">Códec</string>
+    <string name="preferences_log_verbose_title">Registro detallado</string>
+    <string name="preferences_log_verbose_summary">Cuidado: guarda MUCHÍSIMO. No lo dejes encendido para jugar normalmente.</string>
+    <string name="preferences_codec_title_h265">H265 (solo PS5)</string>
+    <string name="preferences_button_haptic_enabled_title">Vibración al tocar</string>
+    <string name="alert_message_delete_registered_host">¿Seguro que quieres borrar la consola registrada %s con ID %s?</string>
+    <string name="alert_message_delete_manual_host">¿Seguro que quieres borrar la consola %s?</string>
+    <string name="action_keep">Conservar</string>
+    <string name="action_delete">Borrar</string>
+    <string name="action_edit">Editar</string>
+    <string name="session_logs_empty_info">No hay registros de sesión.</string>
+    <string name="registered_hosts_empty_info">No hay consolas registradas.</string>
+    <string name="preferences_touchscreen_touchpad_title">Pantalla táctil como touchpad</string>
+    <string name="preferences_touchscreen_touchpad_summary">Usar la zona del vídeo como touchpad</string>
+</resources>

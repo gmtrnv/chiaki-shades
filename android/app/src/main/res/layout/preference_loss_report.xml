@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout for LossReportPreference: a slider with stops (No · 1 % … 5 % · All), the stop's name at the
+  end and, below, what that stop does (changes while the slider moves).
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:gravity="center_vertical"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:baselineAligned="false">
+
+    <include layout="@layout/image_frame"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:ellipsize="marquee"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/preference_seekbar_padding_horizontal"
+                android:paddingEnd="@dimen/preference_seekbar_padding_horizontal"
+                android:paddingTop="@dimen/preference_seekbar_padding_vertical"
+                android:paddingBottom="@dimen/preference_seekbar_padding_vertical"
+                android:background="@null"/>
+
+            <TextView
+                android:id="@+id/seekbar_value"
+                android:minWidth="64dp"
+                android:paddingStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceListItem"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/loss_explanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="?android:attr/textColorSecondary"
+            style="@style/PreferenceSummaryTextStyle"/>
+
+        <TextView
+            android:id="@android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAlignment="viewStart"
+            android:textColor="?android:attr/textColorSecondary"
+            android:alpha="0.7"
+            style="@style/PreferenceSummaryTextStyle"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,11 @@
+<!-- Optical stretch: a frame whose sides bulge outwards like a lens -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:width="24dp"
+    android:height="24dp">
+    <path
+        android:pathData="M5 5h14q3 7 0 14H5q-3 -7 0 -14zM6.4 7q-2 5 0 10h11.2q2 -5 0 -10z"
+        android:fillType="evenOdd"
+        android:fillColor="#000000" />
+</vector>

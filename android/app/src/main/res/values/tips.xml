@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Tips on the main screen: a new one each day, the first (Optical) first and the others at random; the light bulb lists them all in this order.
+  This file is all there is to review them (and values-es/tips.xml, in Spanish, with the same
+  number of tips in the same order): change the text, reorder, remove or add lines.
+  Casual tone; say what it does, that it is on by default (if it is) and how to change it.
+-->
+<resources>
+    <string-array name="tips">
+        <item>Optical mode is on: it fills your screen with no black bars, using a soft lens that only stretches the edges and leaves the centre untouched. You can turn it off during the game, in the bottom bar.</item>
+        <item>Auto quality: each card\'s label says what the next connection will ask for. In the Quality pill you can fix the resolution and see why it picked that bitrate. Pull the list down to measure the network again (it also looks for consoles, even with discovery off).</item>
+        <item>Long press Color in the game bar to try the color presets live, without leaving the game.</item>
+        <item>Can\'t find the game bar? Tap the screen with three fingers to show or hide it.</item>
+        <item>Long press the controller button in the bar to edit the touch controller: move, resize and arrange every control your way.</item>
+        <item>In the controller editor, Layouts keeps several arrangements and has three built-in ones for different screens.</item>
+        <item>Shell mode puts the controls beside the video, on a drawn shell, so they never cover the game.</item>
+        <item>Leaving with ✕ you can pick Suspend &amp; quit: the PS5 goes to rest mode without you getting up.</item>
+        <item>Tap the speaker in the bar to mute the game, or long press it to set its volume without touching the device\'s.</item>
+        <item>Going Home mid-game keeps it playing in a small window. If you don\'t like it, turn it off in Settings.</item>
+        <item>With quick reconnect (Settings), leaving pauses the game for a few minutes and coming back is instant.</item>
+        <item>Each account has its own color on the main screen. To change it: Account pill, ⋮ and Color.</item>
+        <item>In the controller panel, Gyroscope section, you can aim by moving the device, like one more stick.</item>
+        <item>Long press ✕ in the game bar to see network graphs: bitrate, losses and delays.</item>
+        <item>Export settings (in Settings) copies your setup to another device. Registered consoles only travel if you tick them.</item>
+        <item>In Settings, Color, Export look saves your preset as a shader for mpv and mpv-based players.</item>
+    </string-array>
+</resources>

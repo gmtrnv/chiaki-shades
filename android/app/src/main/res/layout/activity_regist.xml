@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Registering a console in three steps: 1 PlayStation account (signed in once, kept), 2 the console
+  (picked from the ones found on the network, or typed by hand), 3 the PIN (last: it expires).
+  "Advanced": console version and the Account ID typed by hand (the old way).
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:layout_width="256dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_regist_console"
+            app:tint="?attr/colorOnPrimary"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_regist"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?attr/textAppearanceHeadline1"/>
+
+        <!-- 1 · Account -->
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/RegistStepTitle"
+            android:text="@string/regist_step_account"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/accountStatusTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceBody1"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/psnLoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            style="@style/MageTheme.Button"
+            android:text="@string/regist_psn_login"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/accountChangeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="?attr/colorAccent"
+            android:text="@string/regist_account_change"/>
+
+        <!-- 2 · Console -->
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/RegistStepTitle"
+            android:text="@string/regist_step_console"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/consoleSearchTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:alpha="0.7"/>
+
+        <RadioGroup
+            android:id="@+id/consoleRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/manualHostRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/regist_console_manual"/>
+
+        <LinearLayout
+            android:id="@+id/manualHostGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/hostTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_regist_host"
+                app:startIconDrawable="@drawable/ic_host">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hostEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/broadcastCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/regist_broadcast"/>
+        </LinearLayout>
+
+        <!-- 3 · PIN -->
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/RegistStepTitle"
+            android:text="@string/regist_step_pin"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pinHelpBeforeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/regist_pin_now_ps5"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:alpha="0.8"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pinHelpNavigationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/regist_pin_instructions_ps5_navigation"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/regist_pin_expires"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:alpha="0.7"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pinTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/hint_regist_pin"
+            app:startIconDrawable="@drawable/ic_pin">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pinEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="8"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            style="@style/MageTheme.Button"
+            android:text="@string/action_regist"/>
+
+        <!-- Advanced -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/advancedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="?attr/colorAccent"
+            android:textAllCaps="false"
+            app:icon="@drawable/ic_arrow_drop_down"
+            app:iconGravity="end"
+            app:iconTint="?attr/colorAccent"
+            android:text="@string/regist_advanced"/>
+
+        <LinearLayout
+            android:id="@+id/advancedGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RadioGroup
+                android:id="@+id/ps4VersionRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/ps5RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/regist_option_ps5"
+                    android:checked="true"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/ps4VersionGE8RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/regist_option_ps4_ge_8"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/ps4VersionGE7RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/regist_option_ps4_ge_7" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/ps4VersionLT7RadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/regist_option_ps4_lt_7"/>
+            </RadioGroup>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/psnIdHelpTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/regist_manual_id_help"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:alpha="0.7"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/psnIdTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="@string/hint_regist_psn_account_id"
+                app:startIconDrawable="@drawable/ic_psn_id">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/psnIdEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:maxLines="1"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

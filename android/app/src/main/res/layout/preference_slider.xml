@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout for SliderPreference: androidx preference_widget_seekbar_material (Apache 2.0)
+  plus a unit after the value ("%" unless ImageSettings says otherwise) and a reset button at the end.
+  The ids seekbar / seekbar_value / title / summary are the ones SeekBarPreference expects.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:gravity="center_vertical"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="8dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:baselineAligned="false">
+
+    <include layout="@layout/image_frame"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <TextView
+            android:id="@android:id/title"
+            android:labelFor="@id/seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceListItem"
+            android:ellipsize="marquee"/>
+
+        <TextView
+            android:id="@android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:textColor="?android:attr/textColorSecondary"
+            android:maxLines="4"
+            style="@style/PreferenceSummaryTextStyle"/>
+
+        <androidx.preference.UnPressableLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/preference_seekbar_padding_horizontal"
+                android:paddingEnd="@dimen/preference_seekbar_padding_horizontal"
+                android:paddingTop="@dimen/preference_seekbar_padding_vertical"
+                android:paddingBottom="@dimen/preference_seekbar_padding_vertical"
+                android:background="@null"/>
+
+            <TextView
+                android:id="@+id/seekbar_value"
+                android:minWidth="@dimen/preference_seekbar_value_minWidth"
+                android:paddingStart="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceListItem"/>
+
+            <TextView
+                android:id="@+id/slider_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textAppearance="?android:attr/textAppearanceListItem"/>
+
+        </androidx.preference.UnPressableLinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/slider_reset"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/preferences_slider_reset"
+        android:src="@drawable/ic_reset"/>
+
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <com.metallic.chiaki.touchcontrols.console.ShellView
+        android:id="@+id/shell"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.metallic.chiaki.touchcontrols.console.FakeGameView
+        android:id="@+id/fakeGame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.metallic.chiaki.touchcontrols.console.ConsolePadView
+        android:id="@+id/pad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="28dp"
+        android:background="#B3141418"
+        android:orientation="horizontal"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp">
+
+        <Button
+            android:id="@+id/settingsButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/console_test_options"
+            android:textColor="#D4AB55" />
+
+        <Button
+            android:id="@+id/editButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/console_test_edit"
+            android:textColor="#D4AB55" />
+
+        <Button
+            android:id="@+id/closeButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/console_test_close"
+            android:textColor="#D4AB55" />
+
+        <!-- moves both bars to the bottom edge and back -->
+        <Button
+            android:id="@+id/toolbarMoveButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:contentDescription="@string/console_test_move_bar"
+            android:text="▼"
+            android:textColor="#D4AB55" />
+    </LinearLayout>
+
+    <!-- the editor: layout bar, hint and options panel (shared with the stream) -->
+    <include
+        android:id="@+id/editor"
+        layout="@layout/view_pad_editor" />
+</FrameLayout>

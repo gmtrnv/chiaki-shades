@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- tips: the ones given so far (a dot while today's is unread) -->
+    <item
+        android:id="@+id/action_tips"
+        android:icon="@drawable/ic_tip"
+        android:title="@string/action_tips"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_discover"
+        android:icon="@drawable/ic_discover_on"
+        android:title="@string/action_discover"
+        android:checkable="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Settings in pages (2.6.0-rc3): the main menu, each page a PreferenceScreen (SettingsActivity opens it
+         as its own SettingsFragment); the two pads' panels are entries of the menu -->
+
+    <PreferenceScreen
+        app:key="screen_stream"
+        app:title="@string/settings_page_stream"
+        app:summary="@string/settings_page_stream_summary"
+        app:icon="@drawable/ic_resolution">
+        <PreferenceCategory
+            app:key="category_stream">
+            <!-- quality profiles (QualityProfiles.kt): each keeps its changes, like the color presets -->
+            <ListPreference
+                app:key="quality_profile"
+                app:title="@string/quality_profile_title"
+                app:icon="@drawable/ic_stats"/>
+
+            <ListPreference
+                app:key="@string/preferences_resolution_key"
+                app:title="@string/preferences_resolution_title"
+                app:summary="%s"
+                app:icon="@drawable/ic_resolution"/>
+
+            <com.metallic.chiaki.settings.BitratePreference
+                app:key="quality_bitrate_mbps"
+                app:title="@string/preferences_bitrate_title"
+                app:icon="@drawable/ic_bitrate"/>
+
+            <SwitchPreference
+                app:key="@string/preferences_offer_lower_res_key"
+                app:title="@string/preferences_offer_lower_res_title"
+                app:summary="@string/preferences_offer_lower_res_summary"
+                app:defaultValue="false"
+                app:icon="@drawable/ic_pref_display_zoom" />
+
+            <Preference
+                app:key="quality_profile_reset"
+                app:title="@string/quality_profile_reset_title"
+                app:icon="@drawable/ic_reset"/>
+
+            <Preference
+                app:key="quality_profile_save"
+                app:title="@string/quality_profile_save_title"
+                app:summary="@string/quality_profile_save_summary"
+                app:icon="@drawable/ic_pref_pin"/>
+
+            <!-- one setting for every profile: changing profile never changes it by mistake -->
+            <com.metallic.chiaki.settings.LossReportPreference
+                app:key="net_loss_report_step"
+                app:title="@string/loss_report_title"
+                app:summary="@string/loss_report_summary"
+                app:icon="@drawable/ic_pref_share"/>
+
+            <ListPreference
+                app:key="@string/preferences_fps_key"
+                app:title="@string/preferences_fps_title"
+                app:summary="%s"
+                app:icon="@drawable/ic_fps"/>
+
+            <ListPreference
+                app:key="@string/preferences_codec_key"
+                app:title="@string/preferences_codec_title"
+                app:summary="%s"
+                app:icon="@drawable/ic_codec"/>
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        app:key="screen_general"
+        app:title="@string/settings_page_general"
+        app:summary="@string/settings_page_general_summary"
+        app:icon="@drawable/ic_settings">
+        <PreferenceCategory
+            app:key="category_general">
+            <Preference
+                app:key="registered_hosts"
+                tools:summary="@string/preferences_registered_hosts_summary"
+                app:summary=" "
+                app:title="@string/preferences_registered_hosts_title"
+                app:fragment="com.metallic.chiaki.settings.SettingsRegisteredHostsFragment"
+                app:icon="@drawable/ic_console_simple"/>
+
+            <!-- tips on the main screen (main/Tips.kt), one a day -->
+            <SwitchPreference
+                app:key="tips_enabled"
+                app:title="@string/preferences_tips_title"
+                app:summary="@string/preferences_tips_summary"
+                app:defaultValue="true"
+                app:icon="@drawable/ic_tip" />
+
+            <SwitchPreference
+                app:key="@string/preferences_rumble_enabled_key"
+                app:title="@string/preferences_rumble_enabled_title"
+                app:summary="@string/preferences_rumble_enabled_summary"
+                app:icon="@drawable/ic_rumble" />
+
+            <!-- rumble done properly (2.6.0-rc4, stream/Rumble.kt) -->
+            <ListPreference
+                app:key="rumble_target"
+                app:dependency="@string/preferences_rumble_enabled_key"
+                app:title="@string/preferences_rumble_target_title"
+                app:entries="@array/preferences_rumble_target_entries"
+                app:entryValues="@array/preferences_rumble_target_values"
+                app:summary="%s" />
+
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="rumble_strength"
+                app:dependency="@string/preferences_rumble_enabled_key"
+                app:title="@string/preferences_rumble_strength_title"
+                app:summary="@string/preferences_rumble_strength_summary"
+                app:min="10"
+                android:max="200"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+
+            <SwitchPreference
+                app:key="rumble_ps5_haptics"
+                app:dependency="@string/preferences_rumble_enabled_key"
+                app:title="@string/preferences_rumble_ps5_title"
+                app:summary="@string/preferences_rumble_ps5_summary"
+                app:defaultValue="true" />
+
+            <SwitchPreference
+                app:key="preferences_touchscreen_touchpad_enabled"
+                app:title="@string/preferences_touchscreen_touchpad_title"
+                app:summary="@string/preferences_touchscreen_touchpad_summary"
+                app:defaultValue="false"
+                app:icon="@drawable/ic_gamepad" />
+
+            <SwitchPreference
+                app:key="@string/preferences_game_mode_key"
+                app:title="@string/preferences_game_mode_title"
+                app:summary="@string/preferences_game_mode_summary"
+                app:defaultValue="true"
+                app:icon="@drawable/ic_gamepad" />
+
+            <SwitchPreference
+                app:key="@string/preferences_stream_dnd_key"
+                app:title="@string/preferences_stream_dnd_title"
+                app:summary="@string/preferences_stream_dnd_summary"
+                app:defaultValue="false"
+                app:icon="@drawable/ic_gamepad" />
+
+            <SwitchPreference
+                app:key="@string/preferences_gameplay_toasts_key"
+                app:title="@string/preferences_gameplay_toasts_title"
+                app:summary="@string/preferences_gameplay_toasts_summary"
+                app:defaultValue="false"
+                app:icon="@drawable/ic_gamepad" />
+
+            <SwitchPreference
+                app:key="@string/preferences_pip_enabled_key"
+                app:title="@string/preferences_pip_enabled_title"
+                app:summary="@string/preferences_pip_enabled_summary"
+                app:defaultValue="true"
+                app:icon="@drawable/ic_picture_in_picture" />
+
+            <SwitchPreference
+                app:key="@string/preferences_stats_overlay_key"
+                app:title="@string/preferences_stats_overlay_title"
+                app:summary="@string/preferences_stats_overlay_summary"
+                app:defaultValue="false"
+                app:icon="@drawable/ic_stats" />
+
+            <SwitchPreference
+                app:key="@string/preferences_quick_reconnect_enabled_key"
+                app:title="@string/preferences_quick_reconnect_enabled_title"
+                app:summary="@string/preferences_quick_reconnect_enabled_summary"
+                app:defaultValue="false"
+                app:icon="@drawable/ic_console_simple" />
+
+            <ListPreference
+                app:key="@string/preferences_quick_reconnect_seconds_key"
+                app:dependency="@string/preferences_quick_reconnect_enabled_key"
+                app:title="@string/preferences_quick_reconnect_seconds_title"
+                app:entries="@array/preferences_quick_reconnect_seconds_entries"
+                app:entryValues="@array/preferences_quick_reconnect_seconds_values"
+                app:summary="%s" />
+
+            <SwitchPreference
+                app:key="@string/preferences_quick_reconnect_press_ps_key"
+                app:dependency="@string/preferences_quick_reconnect_enabled_key"
+                app:title="@string/preferences_quick_reconnect_press_ps_title"
+                app:summary="@string/preferences_quick_reconnect_press_ps_summary"
+                app:defaultValue="true" />
+
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="@string/preferences_stream_volume_key"
+                app:title="@string/preferences_stream_volume_title"
+                app:summary="@string/preferences_stream_volume_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+
+
+            <SwitchPreference
+                app:key="@string/preferences_log_verbose_key"
+                app:title="@string/preferences_log_verbose_title"
+                app:summary="@string/preferences_log_verbose_summary"
+                app:icon="@drawable/ic_log" />
+
+            <Preference
+                app:key="logs"
+                app:summary="@string/preferences_logs_summary"
+                app:title="@string/preferences_logs_title"
+                app:fragment="com.metallic.chiaki.settings.SettingsLogsFragment"
+                app:icon="@drawable/ic_log"/>
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <!-- the touch pad, the gyroscope (both uses) and the grip: all in the pad's panel, which can also be
+         opened while playing (2.5.7) -->
+    <Preference
+        app:key="console_pad_test"
+        app:title="@string/preferences_console_pad_test_title"
+        app:summary="@string/preferences_console_pad_test_summary"
+        app:icon="@drawable/ic_gamepad" />
+
+    <!-- the physical controller's keys, with a live tester (2.6.0-rc3, replaces the fork's list) -->
+    <Preference
+        app:key="pad_mapping_open"
+        app:title="@string/pad_mapping_title"
+        app:summary="@string/pad_mapping_summary"
+        app:icon="@drawable/ic_gamepad" />
+
+    <PreferenceScreen
+        app:key="screen_image"
+        app:title="@string/settings_page_image"
+        app:summary="@string/settings_page_image_summary"
+        app:icon="@drawable/ic_pref_image">
+        <PreferenceCategory
+            app:key="category_image_quality"
+            app:title="@string/preferences_category_title_quality">
+            <SwitchPreference
+                app:key="@string/preferences_hq_enabled_key"
+                app:title="@string/preferences_hq_title"
+                app:summary="@string/preferences_hq_summary"
+                app:defaultValue="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_quality_sharp"
+                app:dependency="@string/preferences_hq_enabled_key"
+                app:title="@string/preferences_sharp_title"
+                app:summary="@string/preferences_sharp_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_quality_antiring"
+                app:dependency="@string/preferences_hq_enabled_key"
+                app:title="@string/preferences_antiring_title"
+                app:summary="@string/preferences_antiring_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            app:key="category_image_deband"
+            app:title="@string/preferences_category_title_deband">
+            <SwitchPreference
+                app:key="@string/preferences_deband_light_enabled_key"
+                app:title="@string/preferences_deband_light_title"
+                app:summary="@string/preferences_deband_light_summary"
+                app:defaultValue="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_deband_steps"
+                app:dependency="@string/preferences_deband_light_enabled_key"
+                app:title="@string/preferences_deband_steps_title"
+                app:summary="@string/preferences_deband_steps_summary"
+                app:min="1"
+                android:max="4"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_deband_threshold"
+                app:dependency="@string/preferences_deband_light_enabled_key"
+                app:title="@string/preferences_deband_threshold_title"
+                app:summary="@string/preferences_deband_threshold_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_deband_range"
+                app:dependency="@string/preferences_deband_light_enabled_key"
+                app:title="@string/preferences_deband_range_title"
+                app:summary="@string/preferences_deband_range_summary"
+                app:min="4"
+                android:max="32"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_deband_grain"
+                app:dependency="@string/preferences_deband_light_enabled_key"
+                app:title="@string/preferences_deband_grain_title"
+                app:summary="@string/preferences_deband_grain_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            app:key="category_image_optical"
+            app:title="@string/preferences_category_title_optical">
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_optical_fix"
+                app:title="@string/preferences_optical_fix_title"
+                app:summary="@string/preferences_optical_fix_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_optical_zc"
+                app:title="@string/preferences_optical_zc_title"
+                app:summary="@string/preferences_optical_zc_summary"
+                app:min="100"
+                android:max="120"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            app:key="category_image_color"
+            app:title="@string/preferences_category_title_color">
+            <!-- summary set by SettingsFragment ("Name*" when edited) -->
+            <ListPreference
+                app:key="image_color_preset"
+                app:title="@string/preferences_color_preset_title"
+                app:entries="@array/preferences_color_preset_entries"
+                app:entryValues="@array/preferences_color_preset_values" />
+            <Preference
+                app:key="image_color_preset_reset"
+                app:title="@string/preferences_color_preset_reset_title" />
+            <Preference
+                app:key="image_color_preset_save"
+                app:title="@string/preferences_color_preset_save_title"
+                app:summary="@string/preferences_color_preset_save_summary" />
+            <Preference
+                app:key="image_color_look_export"
+                app:title="@string/preferences_color_look_export_title"
+                app:summary="@string/preferences_color_look_export_summary" />
+            <Preference
+                app:key="image_color_look_import"
+                app:title="@string/preferences_color_look_import_title"
+                app:summary="@string/preferences_color_look_import_summary" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_exposure_milli"
+                app:title="@string/preferences_color_exposure_title"
+                app:summary="@string/preferences_color_exposure_summary"
+                app:min="-100"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_brightness_milli"
+                app:title="@string/preferences_color_brightness_title"
+                app:summary="@string/preferences_color_brightness_summary"
+                app:min="-10"
+                android:max="10"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_temp_milli"
+                app:title="@string/preferences_color_temp_title"
+                app:summary="@string/preferences_color_temp_summary"
+                app:min="-100"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_tint_milli"
+                app:title="@string/preferences_color_tint_title"
+                app:summary="@string/preferences_color_tint_summary"
+                app:min="-100"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_contrast_milli"
+                app:title="@string/preferences_color_contrast_title"
+                app:summary="@string/preferences_color_contrast_summary"
+                app:min="50"
+                android:max="150"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_saturation_milli"
+                app:title="@string/preferences_color_saturation_title"
+                app:summary="@string/preferences_color_saturation_summary"
+                app:min="0"
+                android:max="200"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_vibrance_milli"
+                app:title="@string/preferences_color_vibrance_title"
+                app:summary="@string/preferences_color_vibrance_summary"
+                app:min="-100"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <ListPreference
+                app:key="image_color_bw"
+                app:title="@string/preferences_color_bw_title"
+                app:entries="@array/preferences_color_bw_entries"
+                app:entryValues="@array/preferences_color_bw_values"
+                app:useSimpleSummaryProvider="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_bw_strength_milli"
+                app:title="@string/preferences_color_bw_strength_title"
+                app:summary="@string/preferences_color_bw_strength_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_curve_blacks_milli"
+                app:title="@string/preferences_color_blacks_title"
+                app:summary="@string/preferences_color_blacks_summary"
+                app:min="0"
+                android:max="30"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_curve_shadows_milli"
+                app:title="@string/preferences_color_shadows_title"
+                app:summary="@string/preferences_color_tone_summary"
+                app:min="-25"
+                android:max="25"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_curve_mids_milli"
+                app:title="@string/preferences_color_mids_title"
+                app:summary="@string/preferences_color_tone_summary"
+                app:min="-25"
+                android:max="25"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_curve_highs_milli"
+                app:title="@string/preferences_color_highs_title"
+                app:summary="@string/preferences_color_tone_summary"
+                app:min="-25"
+                android:max="25"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_curve_whites_milli"
+                app:title="@string/preferences_color_whites_title"
+                app:summary="@string/preferences_color_whites_summary"
+                app:min="-30"
+                android:max="0"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_split_milli"
+                app:title="@string/preferences_color_split_title"
+                app:summary="@string/preferences_color_split_summary"
+                app:min="0"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <ListPreference
+                app:key="image_color_palette"
+                app:title="@string/preferences_color_palette_title"
+                app:entries="@array/preferences_color_palette_entries"
+                app:entryValues="@array/preferences_color_palette_values"
+                app:useSimpleSummaryProvider="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_color_split_balance_milli"
+                app:title="@string/preferences_color_balance_title"
+                app:summary="@string/preferences_color_balance_summary"
+                app:min="-100"
+                android:max="100"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_vignette_amount_milli"
+                app:title="@string/preferences_vignette_amount_title"
+                app:summary="@string/preferences_vignette_amount_summary"
+                app:min="0"
+                android:max="50"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <com.metallic.chiaki.settings.SliderPreference
+                app:key="image_vignette_start_milli"
+                app:title="@string/preferences_vignette_start_title"
+                app:summary="@string/preferences_vignette_start_summary"
+                app:min="0"
+                android:max="95"
+                app:showSeekBarValue="true"
+                app:updatesContinuously="true" />
+            <ListPreference
+                app:key="image_vignette_axis"
+                app:title="@string/preferences_vignette_axis_title"
+                app:entries="@array/preferences_vignette_axis_entries"
+                app:entryValues="@array/preferences_vignette_axis_values"
+                app:useSimpleSummaryProvider="true" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        app:key="screen_appearance"
+        app:title="@string/settings_page_appearance"
+        app:summary="@string/settings_page_appearance_summary"
+        app:icon="@drawable/ic_console_simple">
+        <PreferenceCategory
+            app:key="category_appearance">
+            <ListPreference
+                app:key="@string/preferences_card_animation_key"
+                app:title="@string/preferences_card_animation_title"
+                app:entries="@array/preferences_card_animation_entries"
+                app:entryValues="@array/preferences_card_animation_values"
+                app:summary="%s"
+                app:icon="@drawable/ic_console_simple"/>
+
+            <!-- the app's language (2.6.0-rc4): the system's, or Spanish / English whatever the system says -->
+            <ListPreference
+                app:key="app_language"
+                app:title="@string/preferences_language_title"
+                app:entries="@array/preferences_language_entries"
+                app:entryValues="@array/preferences_language_values"
+                app:summary="%s"
+                app:icon="@drawable/ic_settings"/>
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        app:key="screen_backup"
+        app:title="@string/settings_page_backup"
+        app:summary="@string/settings_page_backup_summary"
+        app:icon="@drawable/ic_export">
+        <PreferenceCategory
+            app:key="category_export">
+            <Preference
+                app:key="@string/preferences_export_settings_key"
+                app:summary="@string/preferences_export_settings_summary"
+                app:title="@string/preferences_export_settings_title"
+                app:icon="@drawable/ic_export"/>
+
+            <Preference
+                app:key="@string/preferences_import_settings_key"
+                app:summary="@string/preferences_import_settings_summary"
+                app:title="@string/preferences_import_settings_title"
+                app:icon="@drawable/ic_import"/>
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <!-- About (2.7.0): what the AGPL asks the app itself to show (license, no warranty, where the
+         source is, that it is a modified version), the credits and the trademark notice.
+         The links are opened in code (SettingsFragment.setupAbout), safe without a browser. -->
+    <PreferenceScreen
+        app:key="screen_about"
+        app:title="@string/settings_page_about"
+        app:summary="@string/settings_page_about_summary"
+        app:icon="@drawable/ic_info">
+        <PreferenceCategory
+            app:key="category_about">
+            <Preference
+                app:key="about_version"
+                app:title="@string/app_name"
+                app:selectable="false"
+                app:icon="@drawable/ic_info"/>
+
+            <Preference
+                app:key="about_source"
+                app:title="@string/about_source_title"
+                app:summary="@string/about_source_summary"
+                app:icon="@drawable/ic_codec"/>
+
+            <Preference
+                app:key="about_license"
+                app:title="@string/about_license_title"
+                app:summary="@string/about_license_summary"/>
+
+            <Preference
+                app:key="about_credits"
+                app:title="@string/about_credits_title"
+                app:summary="@string/about_credits_summary"/>
+
+            <Preference
+                app:key="about_trademarks"
+                app:summary="@string/about_trademarks_summary"
+                app:selectable="false"/>
+        </PreferenceCategory>
+    </PreferenceScreen>
+</PreferenceScreen>

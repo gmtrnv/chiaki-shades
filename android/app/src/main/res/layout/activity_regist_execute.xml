@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Registering: "Registering…" with a spinner; on success the screen closes by itself. On failure,
+  what to check. The technical log stays hidden behind "Show details" (with Share, to send it).
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="?android:attr/windowBackground">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_regist_console"
+        app:tint="?attr/colorOnPrimary"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:indeterminate="true"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/infoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/regist_info_running"
+        android:textSize="20sp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/hintTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/regist_failed_hint"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:alpha="0.8"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/detailsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="?attr/colorAccent"
+            android:text="@string/regist_show_details"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/shareLogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="?attr/colorAccent"
+            android:visibility="gone"
+            app:icon="@drawable/ic_share"
+            app:iconTint="?attr/colorAccent"
+            android:text="@string/action_share_log"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MageTheme.Button"
+            android:visibility="gone"
+            android:text="@string/regist_back"/>
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/logTextView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:fontFamily="monospace"
+        android:textSize="11sp"
+        android:scrollbars="vertical"
+        android:scrollHorizontally="true"
+        android:background="?attr/colorPrimaryDark"
+        android:padding="8dp"
+        android:visibility="invisible"/>
+</LinearLayout>

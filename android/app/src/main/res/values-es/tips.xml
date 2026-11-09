@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Consejos de la pantalla principal: uno nuevo al día, el primero (Óptico) primero y los demás al azar; la bombilla los lista todos en este orden.
+  Para revisarlos basta con este archivo (y el mismo en values/tips.xml, en inglés, con el mismo
+  número de consejos y en el mismo orden): cambiar el texto, reordenar, quitar o añadir líneas.
+  Tono casual; decir qué hace, que está así por defecto (si lo está) y cómo cambiarlo.
+-->
+<resources>
+    <string-array name="tips">
+        <item>El modo Óptico viene activado: llena tu pantalla sin barras negras, con una lente suave que solo estira los bordes y deja el centro intacto. Puedes quitarlo durante la partida, en la barra de abajo.</item>
+        <item>Calidad Auto: la etiqueta de cada tarjeta dice qué pedirá la próxima conexión. En la píldora Calidad puedes fijar la resolución y ver por qué eligió ese bitrate. Desliza la lista hacia abajo para medir la red otra vez (de paso busca consolas, aunque la búsqueda esté apagada).</item>
+        <item>Mantén pulsado Color en la barra de la partida para probar los presets de color en vivo, sin salir del juego.</item>
+        <item>¿La barra de la partida no aparece? Toca la pantalla con tres dedos para mostrarla u ocultarla.</item>
+        <item>Mantén pulsado el botón del mando en la barra para editar el mando táctil: mueve, agranda y ordena cada control a tu gusto.</item>
+        <item>En el editor del mando, Disposiciones guarda varias colocaciones y trae tres de fábrica para pantallas distintas.</item>
+        <item>El modo Carcasa pone los controles a los lados del vídeo, sobre una carcasa dibujada, para que no tapen el juego.</item>
+        <item>Al salir con ✕ puedes elegir Suspender y salir: la PS5 se va a reposo sin tener que levantarte.</item>
+        <item>Toca el altavoz de la barra para silenciar el juego, o mantenlo pulsado para ajustar su volumen sin tocar el del aparato.</item>
+        <item>Si vas a Inicio en plena partida, sigue en una ventana pequeña. Si no te gusta, se apaga en Ajustes.</item>
+        <item>Con la reconexión rápida (Ajustes), salir deja la partida en pausa unos minutos y al volver entras al instante.</item>
+        <item>Cada cuenta tiene su color en la pantalla principal. Para cambiarlo: píldora Cuenta, ⋮ y Color.</item>
+        <item>En el panel del mando, sección Giroscopio, puedes apuntar moviendo el aparato, como un stick más.</item>
+        <item>Mantén pulsado ✕ en la barra de la partida para ver gráficas de la red: bitrate, pérdidas y retrasos.</item>
+        <item>Exportar ajustes (en Ajustes) copia tu configuración a otro aparato. Las consolas registradas solo viajan si lo marcas.</item>
+        <item>En Ajustes, Color, Exportar look guarda tu preset como un shader compatible con mpv y reproductores basados en mpv.</item>
+    </string-array>
+</resources>

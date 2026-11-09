@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.metallic.chiaki">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- needed for the WifiLock that keeps the WiFi radio awake while streaming -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+    <!-- quick reconnect: a paused stream stays connected, shown in a notification -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- "Do not disturb while playing" (only with the user's OK in the system settings) -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="${appLabel}"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:localeConfig="@xml/locales_config"
+        tools:targetApi="tiramisu"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <!-- the app's own language (Settings → Appearance): Android 13+ keeps it itself, older
+             versions through this AppCompat service -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <provider
+            android:authorities="${applicationId}.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"
+                />
+        </provider>
+
+        <activity android:name=".main.MainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".stream.StreamActivity"
+            android:theme="@style/StreamTheme"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:supportsPictureInPicture="true"
+            android:screenOrientation="userLandscape"/>
+
+        <activity
+            android:name=".settings.SettingsActivity" />
+
+        <activity
+            android:name=".settings.PadMappingActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout" />
+
+        <activity
+            android:name=".touchcontrols.console.TouchTestActivity"
+            android:theme="@style/StreamTheme"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:screenOrientation="userLandscape" />
+
+        <service
+            android:name=".session.KeptSessionService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="false" />
+
+        <activity
+            android:name=".regist.RegistActivity"
+            android:theme="@style/MageTheme"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <!-- Sign in with PlayStation in the user's browser; the browser shares back the address
+             Sony ends on (it carries a one-time code, nothing else is read) -->
+        <activity
+            android:name=".regist.PsnLoginActivity"
+            android:theme="@style/MageTheme"
+            android:launchMode="singleTask"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".regist.RegistExecuteActivity"
+            android:theme="@style/MageTheme"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+
+        <activity
+            android:name=".manualconsole.EditManualConsoleActivity"
+            android:theme="@style/MageTheme"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+    </application>
+
+</manifest>

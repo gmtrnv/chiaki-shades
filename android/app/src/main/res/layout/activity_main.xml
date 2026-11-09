@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/rootLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <!-- pulling the list down looks for consoles (even with discovery off) and measures the network again -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/hostsRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hostsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="96dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/emptyInfoLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:id="@+id/emptyInfoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_discover_off"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/emptyInfoTextView"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:alpha="0.5"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/emptyInfoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/display_hosts_empty_discovery_off_info"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emptyInfoImageView"
+            android:gravity="center_horizontal"
+            android:maxWidth="300dp"/>
+    </LinearLayout>
+
+    <!-- today's tip (Tips.kt): a tap closes it; the light bulb in the bar shows them again -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tipCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="16dp"
+        android:maxWidth="560dp"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_tip"
+                android:importantForAccessibility="no"/>
+
+            <TextView
+                android:id="@+id/tipText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceBody2"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <FrameLayout
+        android:id="@+id/floatingActionButtonDialBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000"
+        android:visibility="gone"
+        android:clickable="true"
+        app:layout_behavior="com.metallic.chiaki.main.FloatingActionButtonBackgroundBehavior"/>
+
+    <LinearLayout
+        android:id="@+id/floatingActionButtonDial"
+        android:layout_gravity="top|end"
+        android:visibility="invisible"
+        app:layout_anchor="@id/floatingActionButton"
+        app:layout_anchorGravity="top|end"
+        android:orientation="vertical"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_behavior="com.metallic.chiaki.main.FloatingActionButtonSpeedDialBehavior"
+        android:gravity="right"
+        android:clipChildren="false">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/registerLabelButton"
+                style="@style/AppTheme.FloatingActionButtonSpeedDial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/action_register"
+                android:textStyle="bold"
+                app:rippleColor="@color/floating_action_button_speed_dial_tint"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/registerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_register"
+                app:fabSize="mini"
+                style="@style/AppTheme.FloatingActionButtonSpeedDial" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addManualLabelButton"
+                style="@style/AppTheme.FloatingActionButtonSpeedDial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/action_add_manual"
+                android:textStyle="bold"
+                app:rippleColor="@color/floating_action_button_speed_dial_tint"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addManualButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                app:fabSize="mini"
+                style="@style/AppTheme.FloatingActionButtonSpeedDial" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/selector_add_fab"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|end"
+        app:fabSize="normal" />
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="?attr/colorPrimarySurface"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:theme="@style/AppTheme.Toolbar">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/title_main"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="20dp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <!-- PlayStation account in use (only once one is saved) and quality profile for the next
+             connection: tap = choose (they stay while the list scrolls) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="?attr/colorPrimarySurface"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="6dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/accountPill"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:maxWidth="200dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:visibility="gone"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="10dp"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textColor="?attr/colorOnPrimary"
+                app:strokeColor="?attr/colorOnPrimary"
+                app:rippleColor="?attr/colorOnPrimary"
+                app:cornerRadius="18dp"
+                app:icon="@drawable/ic_arrow_drop_down"
+                app:iconGravity="end"
+                app:iconPadding="2dp"
+                app:iconTint="?attr/colorOnPrimary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/qualityPill"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minHeight="0dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="10dp"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textColor="?attr/colorOnPrimary"
+                app:strokeColor="?attr/colorOnPrimary"
+                app:rippleColor="?attr/colorOnPrimary"
+                app:cornerRadius="18dp"
+                app:icon="@drawable/ic_arrow_drop_down"
+                app:iconGravity="end"
+                app:iconPadding="2dp"
+                app:iconTint="?attr/colorOnPrimary" />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

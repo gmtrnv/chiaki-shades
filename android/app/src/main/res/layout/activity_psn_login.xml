@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:maxWidth="560dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/psn_login_title"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceHeadline1"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/psn_login_privacy"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:alpha="0.85"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/psn_login_step1"
+            android:textAppearance="?attr/textAppearanceBody1"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/openSonyButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            style="@style/MageTheme.Button"
+            android:text="@string/psn_login_open"/>
+
+        <!-- the default browser is not always the one wanted (another one, a private tab…) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/shareLinkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textColor="?attr/colorAccent"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_share"
+                app:iconTint="?attr/colorAccent"
+                android:text="@string/psn_login_share_link"/>
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/psn_login_step2"
+            android:textAppearance="?attr/textAppearanceBody1"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/useCopiedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            style="@style/MageTheme.Button"
+            android:text="@string/psn_login_use_copied"/>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/statusTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBody1"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/psn_login_paste_help"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:alpha="0.7"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/psn_login_paste_hint">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pasteEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textUri|textNoSuggestions"
+                android:maxLines="3"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pasteContinueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="?attr/colorAccent"
+            android:text="@string/psn_login_continue"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/psn_login_shared_browser"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:alpha="0.7"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="?attr/colorAccent"
+            android:text="@string/action_regist_discard"/>
+    </LinearLayout>
+</ScrollView>

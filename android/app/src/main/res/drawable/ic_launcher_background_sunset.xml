@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chiaki Shades launcher background: sunset gradient (replaces the original lime) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="412.58884"
+    android:viewportHeight="412.58887">
+  <path android:pathData="M0,0h412.59v412.59h-412.59z">
+    <aapt:attr name="android:fillColor">
+      <gradient
+          android:type="linear"
+          android:startX="0"
+          android:startY="69"
+          android:endX="0"
+          android:endY="343.6">
+        <item android:offset="0" android:color="#FFFFD34E"/>
+        <item android:offset="0.55" android:color="#FFFF8A3D"/>
+        <item android:offset="1" android:color="#FFFF4F7B"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+</vector>

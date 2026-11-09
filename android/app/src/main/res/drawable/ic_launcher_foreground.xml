@@ -1,0 +1,81 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="412.58884"
+    android:viewportHeight="412.58887">
+  <group android:translateX="-200.10559"
+      android:translateY="70.82775">
+    <path
+        android:pathData="m365.238,60.458 l-10.055,21.196 -5.804,12.235L0,93.889l-0,83.155l387.31,0l19.09,28.908 19.09,-28.908l387.31,0l-0,-83.155l-349.379,0l-5.804,-12.235 -10.055,-21.196 -10.056,21.196 -5.804,12.235l-25.302,0 -25.302,0l-5.804,-12.235z"
+        android:strokeAlpha="1"
+        android:strokeLineJoin="miter"
+        android:strokeWidth="0.26458332"
+        android:fillColor="#162d50"
+        android:strokeColor="#00000000"
+        android:strokeLineCap="butt"/>
+    <path
+        android:pathData="M441.06,124.619l-15.875,0l-0,31.75l15.875,0z"
+        android:strokeWidth="0.18791242"
+        android:fillColor="#ffaaee"
+        android:strokeColor="#00000000"
+        android:fillAlpha="1"/>
+    <path
+        android:pathData="M387.615,124.619l-15.875,0l-0,31.75l15.875,0z"
+        android:strokeWidth="0.18791242"
+        android:fillColor="#ffaaee"
+        android:strokeColor="#00000000"
+        android:fillAlpha="1"/>
+    <group>
+      <clip-path android:pathData="m314.217,27.326a79.375,79.375 0,0 1,102.043 0l-51.021,60.805z M 0,0"/>
+      <path
+          android:pathData="M365.238,88.131m-58.208,0a58.208,58.208 0,1 1,116.417 0a58.208,58.208 0,1 1,-116.417 0"
+          android:strokeAlpha="1"
+          android:strokeWidth="8.46666718"
+          android:fillColor="#00000000"
+          android:strokeColor="#162d50"
+          android:fillAlpha="1"/>
+      <path
+          android:pathData="M365.238,88.131m-41.242,0a41.242,41.242 0,1 1,82.484 0a41.242,41.242 0,1 1,-82.484 0"
+          android:strokeAlpha="1"
+          android:strokeWidth="8.46666718"
+          android:fillColor="#00000000"
+          android:strokeColor="#162d50"
+          android:fillAlpha="1"/>
+    </group>
+  </group>
+  <!-- Chiaki Shades: sunglasses over the eyes (gold frame, sunset-tinted lenses, white shine) -->
+  <path
+      android:pathData="M150,197 Q206,190 262,197"
+      android:strokeWidth="5"
+      android:strokeColor="#f5c542"
+      android:strokeLineCap="round"
+      android:fillColor="#00000000"/>
+  <path
+      android:pathData="M164,195h26a12,12 0,0 1,12 12v12a12,12 0,0 1,-12 12h-26a12,12 0,0 1,-12 -12v-12a12,12 0,0 1,12 -12z M222,195h26a12,12 0,0 1,12 12v12a12,12 0,0 1,-12 12h-26a12,12 0,0 1,-12 -12v-12a12,12 0,0 1,12 -12z"
+      android:strokeWidth="4"
+      android:strokeColor="#f5c542">
+    <aapt:attr name="android:fillColor">
+      <gradient
+          android:type="linear"
+          android:startX="0"
+          android:startY="195"
+          android:endX="0"
+          android:endY="231">
+        <item android:offset="0" android:color="#FF2B1A3D"/>
+        <item android:offset="0.55" android:color="#FF7A2A6B"/>
+        <item android:offset="1" android:color="#FFFF8A3D"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M201,205 Q206,200 211,205"
+      android:strokeWidth="4"
+      android:strokeColor="#f5c542"
+      android:fillColor="#00000000"/>
+  <path
+      android:pathData="M160,224 L176,201 M218,224 L234,201"
+      android:strokeWidth="5"
+      android:strokeColor="#BFFFFFFF"
+      android:strokeLineCap="round"/>
+</vector>
