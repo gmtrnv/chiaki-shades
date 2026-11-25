@@ -2,11 +2,13 @@
 
 package com.metallic.chiaki.regist
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.metallic.chiaki.common.AppDatabase
+import com.metallic.chiaki.common.ConsoleEntries
 import com.metallic.chiaki.common.MacAddress
 import com.metallic.chiaki.common.RegisteredHost
 import com.metallic.chiaki.common.ext.toLiveData
@@ -16,7 +18,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
-class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
+class RegistExecuteViewModel(val database: AppDatabase, private val appContext: Context): ViewModel()
 {
 	enum class State
 	{
@@ -42,6 +44,8 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 		private set
 
 	private var assignManualHostId: Long? = null
+	/** the console's address, if registered at an address (not by broadcast) */
+	private var address: String? = null
 	/** The account it is registered with: the same console can be registered once per account */
 	var psnAccountId: String? = null
 		private set
@@ -54,6 +58,7 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 		{
 			regist = Regist(info, log.log, this::registEvent)
 			this.assignManualHostId = assignManualHostId
+			this.address = info.host.trim().takeIf { !info.broadcast && it.isNotEmpty() }
 			this.psnAccountId = info.psnAccountId?.let { android.util.Base64.encodeToString(it, android.util.Base64.NO_WRAP) }
 			_state.value = State.RUNNING
 		}
@@ -114,6 +119,10 @@ class RegistExecuteViewModel(val database: AppDatabase): ViewModel()
 				else
 					it.ignoreElement()
 			}
+			// its entry by address, so it can also be reached away from home (through a VPN)
+			.andThen(io.reactivex.Completable.fromAction {
+				ConsoleEntries.ensure(appContext, database, registeredHost.serverMac, address, registered = true)
+			})
 			.subscribeOn(Schedulers.io())
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe {

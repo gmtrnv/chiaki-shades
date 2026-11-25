@@ -55,4 +55,14 @@ interface ManualHostDao
 
 	@Update
 	fun update(host: ManualHost): Completable
+
+	// blocking versions, for work already on a background thread (ConsoleEntries)
+	@Query("SELECT * FROM manual_host")
+	fun getAllNow(): List<ManualHost>
+
+	@Insert
+	fun insertNow(host: ManualHost): Long
+
+	@Update
+	fun updateNow(host: ManualHost)
 }

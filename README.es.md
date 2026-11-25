@@ -93,9 +93,10 @@ La consola no puede instalar una VPN, así que hace falta otro aparato encendido
 Raspberry Pi, un PC, un servidor o un router con WireGuard. Con Tailscale, por ejemplo, ese aparato se llama "subnet
 router": encontrarás cómo montarlo en [su documentación](https://tailscale.com/kb/1019/subnets).
 
-Cuando la VPN está encendida, la app lo nota: pregunta directamente a cada consola que añadiste por dirección,
-comprueba que es la tuya, y la tarjeta dice **Fuera de casa · por VPN**. Si no responde, al tocarla te explica por qué
-(¿VPN apagada? ¿consola apagada del todo?).
+Cuando la VPN está encendida, la app lo nota: pregunta directamente a cada una de tus consolas, comprueba que es la
+tuya, y la tarjeta dice **Fuera de casa · por VPN**. Si no responde, al tocarla te explica por qué (¿VPN apagada?
+¿consola apagada del todo?). Las consolas que registraste en casa se recuerdan por su dirección local, así que no hace
+falta añadirlas a mano; una consola que nunca registraste en este aparato se puede añadir por dirección.
 
 ## Privacidad
 

@@ -89,8 +89,10 @@ The console cannot run a VPN itself, so another device that stays on at home has
 a PC, a server or a router with WireGuard. With Tailscale, for example, that device is called a "subnet router": you
 will find how to set one up in [its documentation](https://tailscale.com/kb/1019/subnets).
 
-When the VPN is on, the app notices: it asks each console you added by address directly, checks it is yours, and the
-card says **Away from home · via VPN**. If it does not answer, tapping it explains why (VPN off? console fully off?).
+When the VPN is on, the app notices: it asks each of your consoles directly, checks it is yours, and the card says
+**Away from home · via VPN**. If it does not answer, tapping it explains why (VPN off? console fully off?). Consoles
+you registered at home are remembered by their local address, so you don't need to add them by hand; a console you
+never registered on this device can be added by address.
 
 ## Privacy
 

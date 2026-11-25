@@ -41,7 +41,7 @@ class RegistExecuteActivity: AppCompatActivity()
 		binding = ActivityRegistExecuteBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		viewModel = ViewModelProvider(this, viewModelFactory { RegistExecuteViewModel(getDatabase(this)) })
+		viewModel = ViewModelProvider(this, viewModelFactory { RegistExecuteViewModel(getDatabase(this), applicationContext) })
 			.get(RegistExecuteViewModel::class.java)
 
 		binding.logTextView.setHorizontallyScrolling(true)

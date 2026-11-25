@@ -30,6 +30,10 @@ class MainViewModel(val database: AppDatabase, val preferences: Preferences, app
 
 	private val vpnMonitor = VpnMonitor(appContext)
 
+	/** one thread for keeping the consoles' entries by address: database work, one at a time */
+	private val entriesExecutor = java.util.concurrent.Executors.newSingleThreadExecutor()
+	private val entriesScheduler = Schedulers.from(entriesExecutor)
+
 	val discoveryManager = DiscoveryManager().also {
 		it.active = preferences.discoveryEnabled
 		it.discoveryActive
@@ -43,6 +47,23 @@ class MainViewModel(val database: AppDatabase, val preferences: Preferences, app
 		// Consoles added by address are also asked directly, so they can be seen through a VPN
 		database.manualHostDao().getAll()
 			.subscribe { manualHosts -> discoveryManager.setProbeTargets(manualHosts.map { it.host }.toSet()) }
+			.addTo(disposable)
+
+		// A registered console found on the local network keeps an entry by address (see ConsoleEntries):
+		// consoles registered before it existed get theirs here, and an entry follows the console's address
+		Observables.combineLatest(
+				discoveryManager.discoveredHosts,
+				database.manualHostDao().getAll().toObservable(),
+				database.registeredHostDao().getAll().toObservable())
+			.observeOn(entriesScheduler)
+			.subscribe { (discoveredHosts, manualHosts, registeredHosts) ->
+				discoveredHosts.forEach { host ->
+					val mac = host.serverMac ?: return@forEach
+					val address = host.hostAddr ?: return@forEach
+					if(ConsoleEntries.needsWork(appContext, mac, address, manualHosts, registeredHosts))
+						ConsoleEntries.ensure(appContext, database, mac, address, registered = false)
+				}
+			}
 			.addTo(disposable)
 	}
 
@@ -183,6 +204,7 @@ class MainViewModel(val database: AppDatabase, val preferences: Preferences, app
 		PsnAccounts.removeListener(accountsListener)
 		consoleActivity.state.removeObserver(busyObserver)
 		disposable.dispose()
+		entriesExecutor.shutdown()
 		consoleActivity.dispose()
 		discoveryManager.dispose()
 		vpnMonitor.dispose()

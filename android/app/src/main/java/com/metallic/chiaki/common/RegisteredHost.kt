@@ -92,6 +92,10 @@ interface RegisteredHostDao
 	@Query("SELECT * FROM registered_host")
 	fun getAll(): Flowable<List<RegisteredHost>>
 
+	/** blocking, for work already on a background thread (ConsoleEntries) */
+	@Query("SELECT * FROM registered_host")
+	fun getAllNow(): List<RegisteredHost>
+
 	/** The registration of that console for that account ("IS" also matches a null account) */
 	@Query("SELECT * FROM registered_host WHERE server_mac == :mac AND psn_account_id IS :account LIMIT 1")
 	fun getByMacAndAccount(mac: MacAddress, account: String?): Maybe<RegisteredHost>
