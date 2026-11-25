@@ -15,11 +15,18 @@ import io.reactivex.schedulers.Schedulers
 
 class EditManualConsoleViewModel(val database: AppDatabase, manualHostId: Long?): ViewModel()
 {
-	val registeredHosts = database.registeredHostDao().getAll().observeOn(AndroidSchedulers.mainThread())
+	/**
+	 * One choice per console: a console registered with several accounts would show identical
+	 * choices, and which one is linked does not matter, the card uses the registration for the
+	 * account in use. The link only says which console it is.
+	 */
+	val registeredHosts = database.registeredHostDao().getAll()
+			.map { hosts -> hosts.distinctBy { it.serverMac } }
+			.observeOn(AndroidSchedulers.mainThread())
 			.doOnNext { hosts ->
 				val selectedHost = selectedRegisteredHost.value
 				if(selectedHost != null)
-					selectedRegisteredHost.value = hosts.firstOrNull { it.id == selectedHost.id }
+					selectedRegisteredHost.value = hosts.firstOrNull { it.serverMac == selectedHost.serverMac }
 			}
 			.map { listOf(null) + it }
 			.toLiveData()
@@ -35,7 +42,10 @@ class EditManualConsoleViewModel(val database: AppDatabase, manualHostId: Long?)
 				.subscribeOn(Schedulers.io())
 				.observeOn(AndroidSchedulers.mainThread())
 				.doOnNext { hosts ->
-					selectedRegisteredHost.value = hosts.registeredHost
+					// the console's choice in the list (the link may point to another account's registration)
+					val linked = hosts.registeredHost
+					selectedRegisteredHost.value = linked?.let { l ->
+						registeredHosts.value?.firstOrNull { it?.serverMac == l.serverMac } } ?: linked
 				}
 				.map { hosts -> hosts.manualHost }
 				.toLiveData()
