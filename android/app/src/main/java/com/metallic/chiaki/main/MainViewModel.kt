@@ -99,12 +99,16 @@ class MainViewModel(val database: AppDatabase, val preferences: Preferences, app
 					// the entry is linked to one registration; the console (its MAC) is what counts
 					val linked = manualHost.registeredHost?.let { id -> idRegisteredHosts[id] }
 					val linkedMac = linked?.serverMac
-					val registeredHost = pick(linkedMac)
 					// Whatever answers at that address must be this console: away from home the same
 					// local address may belong to another device of that network.
 					val probed = probedHosts[manualHost.host]?.takeIf {
 						linkedMac == null || it.serverMac == linkedMac
 					}
+					// An entry not linked to a registration (added with "register on connect", or its
+					// registration was replaced) still finds the console's registrations by the MAC it
+					// answers with: else a console registered at home asks to be registered again.
+					val consoleMac = linkedMac ?: probed?.serverMac
+					val registeredHost = pick(consoleMac)
 					val discovered = discoveredHosts.firstOrNull {
 						it.isSameConsole(manualHost, linked) || (probed?.serverMac != null && it.serverMac == probed.serverMac)
 					}
@@ -118,7 +122,7 @@ class MainViewModel(val database: AppDatabase, val preferences: Preferences, app
 						vpnActive -> Reach.UNREACHABLE_VPN
 						else -> Reach.UNREACHABLE
 					}
-					ManualDisplayHost(registeredHost, manualHost, discovered, probed, reach, others(linkedMac, registeredHost))
+					ManualDisplayHost(registeredHost, manualHost, discovered, probed, reach, others(consoleMac, registeredHost))
 				}
 				discoveredHosts.forEach { host -> host.serverMac?.let { lastDiscovered[it] = host } }
 				val discoveredDisplayHosts = discoveredHosts.filter { it !in merged }.map {
